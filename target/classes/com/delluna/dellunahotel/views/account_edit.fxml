@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1192.0" spacing="20" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.AccountEditController">
+    <padding>
+        <Insets bottom="40" left="40" right="40" top="40" />
+    </padding>
+    
+    <Label style="-fx-font-weight: bold; -fx-font-size: 24;" text="Edit Profile">
+        <font>
+            <Font name="Arial" size="24.0" />
+        </font>
+    </Label>
+    
+    <Separator />
+    
+    <VBox spacing="15">
+        <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Personal Details" />
+        
+        <VBox spacing="10">
+            <Label style="-fx-text-fill: #666;" text="Name:" />
+            <TextField fx:id="nameField" promptText="Enter your name" />
+            
+            <Label style="-fx-text-fill: #666;" text="Phone:" />
+            <TextField fx:id="phoneField" promptText="Enter your phone number" />
+            
+            <Label style="-fx-text-fill: #666;" text="Gender:" />
+            <TextField fx:id="genderField" promptText="Enter your gender" />
+        </VBox>
+    </VBox>
+    
+    <HBox spacing="10">
+        <Button onAction="#handleSaveChanges" style="-fx-background-color: #d5acd1; -fx-text-fill: white; -fx-font-weight: bold;" text="Save Changes">
+            <padding>
+                <Insets bottom="8" left="16" right="16" top="8" />
+            </padding>
+        </Button>
+        <Button onAction="#handleCancel" style="-fx-background-color: #cccccc; -fx-text-fill: #333; -fx-font-weight: bold;" text="Cancel">
+            <padding>
+                <Insets bottom="8" left="16" right="16" top="8" />
+            </padding>
+        </Button>
+    </HBox>
+</VBox>

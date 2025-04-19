@@ -1,0 +1,120 @@
+/* Root and Background */
+.root {
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+}
+
+/* Form Container */
+.form-container {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 5);
+    -fx-padding: 40;
+}
+
+/* Header Text */
+.header {
+    -fx-font-size: 24px;
+    -fx-text-fill: #6e62aa;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(110,98,170,0.2), 0,0,2,2);
+}
+
+/* TextField and PasswordField Styling */
+.text-field, .password-field {
+    -fx-pref-height: 40;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-border-color: #dee2e6;
+    -fx-padding: 8 15;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #adb5bd;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #6e62aa;
+    -fx-effect: innershadow(gaussian, rgba(110,98,170,0.15), 10, 0, 0, 0);
+}
+
+/* Enhanced Error Labels */
+.error-label {
+    -fx-text-fill: #dc3545;
+    -fx-font-size: 12px;
+    -fx-padding: 5 0 0 3;
+    -fx-graphic: url('error-icon.png');
+    -fx-content-display: left;
+    -fx-graphic-text-gap: 5;
+}
+
+/* Modern Buttons */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #6e62aa, #5b4e9e);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-font-size: 14px;
+    -fx-padding: 12 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 2, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5b4e9e, #4a3d8f);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 3, 3);
+    -fx-translate-y: -1;
+}
+
+.button:pressed {
+    -fx-background-color: #4a3d8f;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.2), 8, 0, 2, 2);
+}
+
+/* Stylish Hyperlinks */
+.hyperlink {
+    -fx-text-fill: #6e62aa;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-font-weight: 500;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #4a3d8f;
+    -fx-underline: true;
+}
+
+/* Enhanced Sidebar */
+.sidebar {
+    -fx-background-color: #6e62aa;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 3, 0);
+}
+
+.sidebar-component {
+    -fx-background-color: transparent;
+    -fx-padding: 15 25;
+    /* -fx-font-size: 14px; */
+    -fx-text-fill: white;
+    -fx-transition: all 0.3s;
+}
+
+.sidebar-component:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-translate-x: 5;
+}
+
+/* Rounded Image */
+.rounded-image {
+    -fx-background-radius: 200;
+    -fx-border-radius: 200;
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+/* Form Section Spacing */
+.vbox, .hbox {
+    -fx-spacing: 20;
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="720" prefWidth="1366" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.SignUpController">
+
+    <!-- Left Side: Form -->
+    <left>
+        <VBox alignment="CENTER" prefWidth="683" spacing="20" style="-fx-background-color: #ffffff; -fx-padding: 50;">
+            <!-- Header -->
+            <VBox alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 20 0;">
+                <Text style="-fx-font-size: 28; -fx-font-weight: bold;" text="Create Account" />
+                <Text style="-fx-font-size: 14; -fx-fill: #666;" text="Join our community today!" />
+            </VBox>
+
+            <!-- Form Grid -->
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="100" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="250" />
+                </columnConstraints>
+
+                <!-- Name Field -->
+                <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="nameField" promptText="Enter your name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="nameError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0" />
+
+                <!-- Email Field -->
+                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="emailField" promptText="example@domain.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="emailError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+
+                <!-- Phone Field -->
+                <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="phoneField" promptText="0123456789" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="phoneError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                
+				<!-- Gender Question -->
+                <Label text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <ComboBox fx:id="genderBox" promptText="Select a gender" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="genderError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+
+                <!-- Password Field -->
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <PasswordField fx:id="passwordField" promptText="At least 8 characters" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="passwordError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+
+                <!-- Security Question -->
+                <Label text="Security Question:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <ComboBox fx:id="securityQuestionBox" promptText="Select a question" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label fx:id="securityQuestionError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+
+                <!-- Security Answer -->
+                <Label text="Security Answer:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <TextField fx:id="securityAnswerField" promptText="Your answer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label fx:id="securityAnswerError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- Submit Button -->
+            <Button onAction="#handleSignUp" style="-fx-font-weight: bold; -fx-pref-width: 200; -fx-pref-height: 40; -fx-background-color: #0066cc; -fx-text-fill: white;" text="Sign Up" />
+            
+            <!-- Login Link -->
+            <HBox alignment="CENTER" spacing="5">
+                <Text text="Already have an account?" />
+                <Hyperlink onAction="#switchToSignIn" style="-fx-text-fill: #0066cc;" text="Log In" />
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- Right Side: Welcome Message -->
+    <right>
+        <StackPane prefWidth="683" style="-fx-background-color: #e6f7ff;">
+            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="531.0" spacing="20">
+            <Rectangle fx:id="signUpImageContainer" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="741.0" stroke="WHITE" strokeType="INSIDE" width="717.0" />
+            </VBox>
+        </StackPane>
+    </right>
+</BorderPane>

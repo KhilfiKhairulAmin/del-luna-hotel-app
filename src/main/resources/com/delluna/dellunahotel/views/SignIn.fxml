@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane prefWidth="1366" prefHeight="720" xmlns="http://javafx.com/javafx/17" stylesheets="@../styles/styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.SignInController">
+
+    <!-- Left Side: Form -->
+    <left>
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #ffffff; -fx-padding: 50;" prefWidth="683">
+            <!-- Header -->
+            <VBox alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 20 0;">
+                <Text text="Welcome Back" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                <Text text="Sign in to continue your journey" style="-fx-font-size: 14; -fx-fill: #666;"/>
+            </VBox>
+
+            <!-- Form Grid -->
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="100"/>
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="250"/>
+                </columnConstraints>
+
+                <!-- Email Field -->
+                <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="emailField" promptText="example@domain.com" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label fx:id="emailError" style="-fx-text-fill: red;" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+
+                <!-- Password Field -->
+                <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <PasswordField fx:id="passwordField" promptText="Enter your password" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label fx:id="passwordError" style="-fx-text-fill: red;" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+
+                <!-- Remember Me & Forgot Password -->
+                <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <CheckBox fx:id="rememberMeCheckbox" text="Remember me"/>
+                    <Hyperlink text="Forgot password?" onAction="#switchToForgotPassword" style="-fx-text-fill: #0066cc;"/>
+                </HBox>
+            </GridPane>
+
+            <!-- Sign In Button -->
+            <Button text="Sign In" onAction="#handleSignIn" style="-fx-font-weight: bold; -fx-pref-width: 200; -fx-pref-height: 40; -fx-background-color: #0066cc; -fx-text-fill: white;"/>
+            
+            <!-- Sign Up Link -->
+            <HBox alignment="CENTER" spacing="5">
+                <Text text="Don't have an account?"/>
+                <Hyperlink text="Sign Up" onAction="#switchToSignUp" style="-fx-text-fill: #0066cc;"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- Right Side: Welcome Message & Graphics -->
+    <right>
+        <StackPane style="-fx-background-color: #e6f7ff;" prefWidth="683">
+            <VBox alignment="CENTER" spacing="20">
+
+                <Text text="Welcome Back!" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                <Text text="We missed you." style="-fx-font-size: 16; -fx-fill: #555;"/>
+                <Text text="Sign in to access your bookings." style="-fx-font-size: 14; -fx-fill: #777;"/>
+            </VBox>
+        </StackPane>
+    </right>
+</BorderPane>

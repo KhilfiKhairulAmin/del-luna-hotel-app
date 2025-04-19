@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.RoomSelectionController">
+   <top>
+      <ToolBar prefHeight="86.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" text="Button" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <ScrollPane hbarPolicy="NEVER" hmax="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="600.0" vmax="100.0">
+        <content>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1315.0" prefWidth="1156.0" style="-fx-background-color: #CBD6F8;">
+                     <children>
+                        <HBox prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="singleImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#singleRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/single.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="singleLabel" onMouseClicked="#singleRoomDescription" style="-fx-cursor: hand;" text="Single Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="doubleImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#doubleRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/double.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="doubleLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#doubleRoomDescription" style="-fx-cursor: hand;" text="Double Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="355.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="tripleImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#tripleRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/triple.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="tripleLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#tripleRoomDescription" style="-fx-cursor: hand;" text="Triple Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="250.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="quadImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#quadRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/quad.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="quadLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#quadRoomDescription" style="-fx-cursor: hand;" text="Quad Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="373.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="executiveImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#executiveRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/executive.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="executiveLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#executiveRoomDescription" style="-fx-cursor: hand;" text="Executive Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="446.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="suiteImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#suiteDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/suite.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="suiteLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#suiteDescription" style="-fx-cursor: hand;" text="Suite">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="591.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="familyImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#familyRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/family.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="familyLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#familyRoomDescription" style="-fx-cursor: hand;" text="Family Room">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="664.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+                           <children>
+                              <ImageView fx:id="honeymoonImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#honeymoonSuiteDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../images/rooms/honeymoon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="honeymoonLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" onMouseClicked="#honeymoonSuiteDescription" style="-fx-cursor: hand;" text="Honeymoon Suite">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+        </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
