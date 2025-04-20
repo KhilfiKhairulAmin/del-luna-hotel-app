@@ -26,15 +26,23 @@
         <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Personal Details" />
         
         <VBox spacing="10">
-            <Label style="-fx-text-fill: #666;" text="Name:" />
-            <TextField fx:id="nameField" promptText="Enter your name" />
+            <!-- Non-editable fields -->
+            <Label style="-fx-text-fill: #666;" text="Full Name:" />
+            <TextField fx:id="fullNameField" disable="true" editable="false" promptText="Full Name" />
+            
+            <Label style="-fx-text-fill: #666;" text="Email:" />
+            <TextField fx:id="emailField" promptText="Enter your email" />
             
             <Label style="-fx-text-fill: #666;" text="Phone:" />
             <TextField fx:id="phoneField" promptText="Enter your phone number" />
             
             <Label style="-fx-text-fill: #666;" text="Gender:" />
-            <TextField fx:id="genderField" promptText="Enter your gender" />
+            <TextField fx:id="displayGenderField" disable="true" editable="false" promptText="Gender" />
+            
+            <Label style="-fx-text-fill: #666;" text="Tag:" />
+            <TextField fx:id="tagField" promptText="Enter your tag" />
         </VBox>
+      <Label fx:id="errorMsg" style="-fx-text-fill: red;" />
     </VBox>
     
     <HBox spacing="10">

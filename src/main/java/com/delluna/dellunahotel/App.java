@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.delluna.dellunahotel.utils.Logger;
+import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
 import javafx.stage.Screen;
@@ -25,8 +26,14 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        String page = "SignIn.fxml";
+        String token = ApiClient.getAuthToken(); // Your method to read from auth_token.txt
+        if (token != null && !token.isEmpty()) {
+            page = "Main.fxml";
+        }
+
     	// Initialize window
-    	FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML("SignIn.fxml"));
+    	FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML(page));
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
         Logger logger = Logger.getInstance();

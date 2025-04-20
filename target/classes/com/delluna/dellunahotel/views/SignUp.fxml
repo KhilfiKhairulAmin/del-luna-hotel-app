@@ -58,19 +58,7 @@
                 <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                 <PasswordField fx:id="passwordField" promptText="At least 8 characters" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Label fx:id="passwordError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-
-                <!-- Security Question -->
-                <Label text="Security Question:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                <ComboBox fx:id="securityQuestionBox" promptText="Select a question" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <Label fx:id="securityQuestionError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-
-                <!-- Security Answer -->
-                <Label text="Security Answer:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-                <TextField fx:id="securityAnswerField" promptText="Your answer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <Label fx:id="securityAnswerError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
             <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />

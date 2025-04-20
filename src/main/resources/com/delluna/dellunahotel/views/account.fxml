@@ -6,57 +6,70 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1194.0" spacing="20" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.AccountController">
+<VBox prefHeight="720.0" prefWidth="1194.0" spacing="30" styleClass="form-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.AccountController">
     <padding>
-        <Insets bottom="40" left="40" right="40" top="40" />
+        <Insets bottom="40" left="60" right="60" top="40" />
     </padding>
-    
-    <HBox alignment="CENTER_LEFT" spacing="20">
-	<Circle fill="#d5acd1" radius="50">
-	    <stroke>
-	        <Color fx:constant="WHITE" />
-	    </stroke>
-	</Circle>
-        <VBox spacing="5">
-            <Label style="-fx-font-weight: bold; -fx-font-size: 24;" text="Account Information">
-                <font>
-                    <Font name="Arial" size="24.0" />
-                </font>
-            </Label>
-            <Label fx:id="engagementLabel" style="-fx-text-fill: #d5acd1; -fx-font-weight: bold;" />
+
+    <!-- Profile Header -->
+    <HBox alignment="CENTER_LEFT" spacing="25">
+        <Circle fill="#d5acd1" radius="50" styleClass="rounded-image" />
+        <VBox spacing="12.0">
+            <Label styleClass="header" text="Account Information" />
+             <HBox alignment="CENTER_LEFT">
+                 <Label fx:id="tagLabel" styleClass="tag-label" />
+             </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <VBox prefHeight="100.0" prefWidth="77.0" spacing="12.0">
+                  <children>
+                         <Label styleClass="field-label" text="Level:" />
+                         <Label styleClass="field-label" text="Points:" />
+                  </children>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </VBox>
+               <VBox prefHeight="100.0" prefWidth="66.0" spacing="12.0">
+                  <children>
+                         <Label fx:id="levelLabel" styleClass="value-label" />
+                         <Label fx:id="pointsLabel" styleClass="value-label" />
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
         </VBox>
     </HBox>
-    
+
     <Separator />
-    
-    <VBox spacing="15">
-        <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Personal Details" />
-        
-        <HBox spacing="20">
-            <VBox prefWidth="200" spacing="10">
-                <Label style="-fx-text-fill: #666;" text="Guest ID:" />
-                <Label style="-fx-text-fill: #666;" text="Name:" />
-                <Label style="-fx-text-fill: #666;" text="Email:" />
-                <Label style="-fx-text-fill: #666;" text="Phone:" />
-                <Label style="-fx-text-fill: #666;" text="Gender:" />
+
+    <!-- Personal Info Section -->
+    <VBox spacing="20">
+        <Label styleClass="header" text="Personal Details" />
+
+        <HBox spacing="40">
+            <!-- Field labels -->
+            <VBox prefWidth="200" spacing="12">
+                <Label styleClass="field-label" text="Guest ID:" />
+                <Label styleClass="field-label" text="Name:" />
+                <Label styleClass="field-label" text="Email:" />
+                <Label styleClass="field-label" text="Phone:" />
+                <Label styleClass="field-label" text="Gender:" />
             </VBox>
-            <VBox spacing="10">
-                <Label fx:id="guestIdLabel" style="-fx-font-weight: bold;" />
-                <Label fx:id="nameLabel" style="-fx-font-weight: bold;" />
-                <Label fx:id="emailLabel" style="-fx-font-weight: bold;" />
-                <Label fx:id="phoneLabel" style="-fx-font-weight: bold;" />
-                <Label fx:id="genderLabel" style="-fx-font-weight: bold;" />
+
+            <!-- Actual values -->
+            <VBox spacing="12">
+                <Label fx:id="guestIdLabel" styleClass="value-label" />
+                <Label fx:id="nameLabel" styleClass="value-label" />
+                <Label fx:id="emailLabel" styleClass="value-label" />
+                <Label fx:id="phoneLabel" styleClass="value-label" />
+                <Label fx:id="genderLabel" styleClass="value-label" />
             </VBox>
         </HBox>
     </VBox>
-    
-    <Button onAction="#handleEditProfile" style="-fx-background-color: #d5acd1; -fx-text-fill: white; -fx-font-weight: bold;" text="Edit Profile">
-        <padding>
-            <Insets bottom="8" left="16" right="16" top="8" />
-        </padding>
-    </Button>
+
+    <!-- Edit Profile Button -->
+    <Button onAction="#handleEditProfile" styleClass="button" text="Edit Profile" />
 </VBox>

@@ -2,13 +2,22 @@ package com.delluna.dellunahotel.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
+import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 import java.util.prefs.Preferences;
 
@@ -30,15 +39,32 @@ public class ApiClient {
      * @param token JWT token to store
      */
     public static void setAuthToken(String token) {
+        // Save to Preferences
         prefs.put(JWT_TOKEN_KEY, token);
+
+        // Also save to a file
+        try {
+            FileWriter writer = new FileWriter("auth_token.txt");
+            writer.write(token);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     /**
      * Gets the current JWT token
      * @return Current JWT token or null if not set
      */
     public static String getAuthToken() {
-        return prefs.get(JWT_TOKEN_KEY, null);
+        try {
+            // Read the contents of the auth_token.txt file
+            return Files.readString(Path.of("auth_token.txt")).trim(); // .trim() to remove any extra newlines or spaces
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; // Return null if there's an error reading the file
+        }
     }
 
     /**
@@ -189,12 +215,16 @@ public class ApiClient {
 
                         if (response.statusCode() >= 200 && response.statusCode() < 300) {
                             // Store the token if the response contains one
+                            System.out.println("HER2e23423ERER");
                             if (response.headers().firstValue("Authorization").isPresent()) {
+                                System.out.println("HERERER");
                                 String authHeader = response.headers().firstValue("Authorization").get();
                                 if (authHeader.startsWith("Bearer ")) {
+                                    System.out.println(authHeader);
                                     setAuthToken(authHeader.substring(7));
                                 }
                             }
+                            System.out.println("HERE2");
                             return gson.fromJson(response.body(), responseType);
                         } else {
                             return gson.fromJson(response.body(), responseType);
@@ -205,6 +235,11 @@ public class ApiClient {
         };
         service.start();
         return service;
+    }
+
+    public static String getGuestId() {
+        String token = getAuthToken();
+        return extractGuestIdFromToken(token);
     }
 
     /**
@@ -222,4 +257,27 @@ public class ApiClient {
             return statusCode;
         }
     }
+
+    public static String extractGuestIdFromToken(String token) {
+    if (token == null || token.isEmpty()) return null;
+
+    try {
+        // Split the token into parts: header.payload.signature
+        String[] parts = token.split("\\.");
+        if (parts.length != 3) return null;
+
+        // Decode the payload (part[1]) from Base64URL
+        String payloadJson = new String(Base64.getUrlDecoder().decode(parts[1]));
+
+        // Parse the payload JSON
+        JsonObject payload = JsonParser.parseString(payloadJson).getAsJsonObject();
+
+        // Extract guestId
+        return payload.has("sub") ? payload.get("sub").getAsString() : null;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
 }

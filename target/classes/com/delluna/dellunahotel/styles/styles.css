@@ -118,3 +118,39 @@
 .vbox, .hbox {
     -fx-spacing: 20;
 }
+
+/* Label Styling */
+.field-label {
+    -fx-text-fill: #666;
+    -fx-font-size: 14px;
+}
+
+.value-label {
+    -fx-text-fill: #212529;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Smooth transitions for the container */
+.form-container {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 20, 0.2, 0, 8);
+}
+
+/* Account Page Header Label */
+.header {
+    -fx-font-size: 22px;
+    -fx-text-fill: #6e62aa;
+    -fx-font-weight: bold;
+}
+
+.tag-label {
+    -fx-background-color: #6e62aa;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 12px;
+    -fx-background-radius: 15; /* creates the circular corners */
+    -fx-font-size: 12px;
+}

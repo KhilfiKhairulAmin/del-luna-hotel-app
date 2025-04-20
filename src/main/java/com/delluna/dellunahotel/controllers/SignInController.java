@@ -17,6 +17,8 @@ import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.models.GuestManager;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
+import com.delluna.dellunahotel.utils.Transtition;
+import com.delluna.dellunahotel.utils.UI;
 
 import java.io.IOException;		  // Error handling package
 
@@ -33,18 +35,17 @@ public class SignInController {
     // Error message fields
     @FXML private Label emailError;
     @FXML private Label passwordError;
-    
-    // Input validation
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
-    
+
+    @FXML Button signInButton;
+
     /**
      * Handle Sign In button click event
      * @param event
      */
     @FXML private void handleSignIn(ActionEvent event) {
 
-        clearErrors();
-        System.out.println("Hello");
+        UI.clearErrors(emailError, passwordError);
+
         Guest2 g = new Guest2();
         g.email = emailField.getText();
         g.passwordHash = passwordField.getText();
@@ -55,13 +56,13 @@ public class SignInController {
                 if (newVal != null) {
                     System.out.println(newVal.isSuccess);
                     if (newVal.isSuccess) {
-                        showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
+                        UI.showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
                         loadHomePage(event);
                     } else {
                         String prop;
 
                         if (newVal.properties.size() == 0) {
-                            showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
+                            UI.showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
                             return;
                         }
 
@@ -80,69 +81,16 @@ public class SignInController {
                 }
             });
     }
-    
-    /**
-     * Reset error fields to default text
-     */
-    private void clearErrors() {
-        emailError.setText("");
-        passwordError.setText("");
-    }
 
-    /**
-     * Handle Sign Up link click event
-     * @param event
-     */
     @FXML private void switchToSignUp(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(LoaderFX.getFXML("SignUp.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1366, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Transtition.switchPage(event, "SignUp.fxml");
     }
-    
-    /**
-     * Handle Forgot Password link click event
-     * @param event
-     */
+
     @FXML private void switchToForgotPassword(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(LoaderFX.getFXML("ForgotPassword.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1366, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Transtition.switchPage(event, "ForgotPassword.fxml");
     }
 
-    /**
-     * Transition to Homepage
-     * @param event
-     * @throws IOException
-     */
     private void loadHomePage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(LoaderFX.getFXML("Main.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1366, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Show a pop up box to alert the user
-     * @param alertType
-     * @param title Title of the pop up window
-     * @param message Message of the pop up window
-     */
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        Transtition.switchPage(event, "Main.fxml");
     }
 }
