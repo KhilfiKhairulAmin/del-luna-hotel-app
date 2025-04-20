@@ -11,7 +11,11 @@ import javafx.scene.Node;		  // Scene management packages
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import com.delluna.dellunahotel.models.Guest2;
+import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.models.GuestManager;
+import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
 import java.io.IOException;		  // Error handling package
@@ -38,39 +42,43 @@ public class SignInController {
      * @param event
      */
     @FXML private void handleSignIn(ActionEvent event) {
-    	
-    	clearErrors();
-    	
-    	boolean isValid = true;
-    	
-    	if (emailField.getText().isEmpty()) {
-    		emailError.setText("Email is required");
-    		isValid = false;
-    	}
-    	else if (!EMAIL_PATTERN.matcher(emailField.getText()).matches()) {
-            emailError.setText("Invalid email format");
-            isValid = false;
-    	}
-    	
-    	if (passwordField.getText().isEmpty()) {
-    		passwordError.setText("Password is required");
-    		isValid = false;
-    	}
-    	
-        if (isValid) {
-            try {
-                boolean isValidGuest = GuestManager.verifyLogin(emailField.getText(), passwordField.getText());
-                
-                if (isValidGuest) {
-                	showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
-                	loadHomePage(event);
+
+        clearErrors();
+        System.out.println("Hello");
+        Guest2 g = new Guest2();
+        g.email = emailField.getText();
+        g.passwordHash = passwordField.getText();
+
+        ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_in", g, ResponseBody.class)
+            .valueProperty()
+            .addListener((obs, oldVal, newVal) -> {
+                if (newVal != null) {
+                    System.out.println(newVal.isSuccess);
+                    if (newVal.isSuccess) {
+                        showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
+                        loadHomePage(event);
+                    } else {
+                        String prop;
+
+                        if (newVal.properties.size() == 0) {
+                            showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
+                            return;
+                        }
+
+                        // Check email
+                        prop = newVal.getProperty("email");
+                        if (prop != null) {
+                            emailError.setText(prop);
+                        }
+
+                        // Check password
+                        prop = newVal.getProperty("password");
+                        if (prop != null) {
+                            passwordError.setText(prop);
+                        }
+                    }
                 }
-                else showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
-                
-            } catch (Exception e) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to create account: " + e.getMessage());
-            }
-        }
+            });
     }
     
     /**
