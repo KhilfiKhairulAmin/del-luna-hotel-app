@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.delluna.dellunahotel.utils.Logger;
+import com.delluna.dellunahotel.models.Guest;
+import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
@@ -26,21 +28,23 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        String page = "SignIn.fxml";
-        String token = ApiClient.getAuthToken(); // Your method to read from auth_token.txt
-        if (token != null && !token.isEmpty()) {
-            page = "Main.fxml";
+        String initialPage;
+        try {
+            new GuestService().getCurrentGuest();
+            initialPage = "Main.fxml";
+        } catch (RuntimeException e) {
+            initialPage = "SignIn.fxml";
         }
 
     	// Initialize window
-    	FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML(page));
+    	FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML(initialPage));
     	Parent root = loader.load();
     	Scene scene = new Scene(root);
         Logger logger = Logger.getInstance();
         
         // Configure logger
         try {
-            logger.addOutput(new Logger.FileOutput("logs/application.log"));
+            logger.addOutput(new Logger.FileOutput("src/main/resources/com/delluna/dellunahotel/logs/application.log"));
         } catch (IOException e) {
             logger.error("Failed to create file logger", e);
         }

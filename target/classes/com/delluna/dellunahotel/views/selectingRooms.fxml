@@ -8,22 +8,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" hmax="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="600.0" vmax="100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.RoomSelectionController">
+<ScrollPane hbarPolicy="NEVER" hmax="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" 
+           minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="600.0" vmax="100.0" 
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="com.delluna.dellunahotel.controllers.RoomSelectionController"
+           styleClass="room-scroll-pane">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1315.0" prefWidth="1192.0" style="-fx-background-color: #CBD6F8;">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            prefHeight="1315.0" prefWidth="1192.0" style="-fx-background-color: #CBD6F8;" 
+            spacing="20" styleClass="room-container">
          <children>
-            <HBox prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">
+            <HBox styleClass="card" alignment="CENTER_LEFT">
+               <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
                <children>
-                  <ImageView fx:id="singleImage" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#singleRoomDescription" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                  <ImageView fx:id="singleImage" fitHeight="150.0" fitWidth="200.0" 
+                           onMouseClicked="#singleRoomDescription" pickOnBounds="true" 
+                           preserveRatio="true" styleClass="card-image">
                      <image>
                         <Image url="@../images/rooms/single.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="singleLabel" onMouseClicked="#singleRoomDescription" style="-fx-cursor: hand;" text="Single Room">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="singleLabel" onMouseClicked="#singleRoomDescription" 
+                        text="Single Room" styleClass="card-title"/>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="300.0" spacing="5.0" style="-fx-border-color: lightgray; -fx-border-width: 1;">

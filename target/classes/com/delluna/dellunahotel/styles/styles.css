@@ -2,6 +2,8 @@
 .root {
     -fx-font-family: "Segoe UI", Arial;
     -fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+    -fx-background-color: transparent;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0, 0);
 }
 
 /* Form Container */
@@ -48,6 +50,12 @@
     -fx-graphic-text-gap: 5;
 }
 
+/* Content pane should not clip */
+.content-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
 /* Modern Buttons */
 .button {
     -fx-background-color: linear-gradient(to bottom, #6e62aa, #5b4e9e);
@@ -89,7 +97,8 @@
 /* Enhanced Sidebar */
 .sidebar {
     -fx-background-color: #6e62aa;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 3, 0);
+    -fx-z-index: 1000;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
 }
 
 .sidebar-component {
@@ -153,4 +162,95 @@
     -fx-padding: 5px 12px;
     -fx-background-radius: 15; /* creates the circular corners */
     -fx-font-size: 12px;
+}
+
+/* Room Selection Styles */
+.room-scroll-pane {
+    -fx-background: #CBD6F8;
+}
+
+.room-container {
+    -fx-padding: 20;
+}
+
+/* Add these variables at the top for easy customization */
+.root {
+    -card-radius: 20;  /* Increased from 10 to make rounder */
+    -shadow-radius: 15;
+    -main-color: #6E62AA;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: -card-radius;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), -shadow-radius, 0, 0, 2);
+    -fx-pref-width: 100%;
+    -fx-spacing: 20;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+/* Round image corners to match card */
+.card-image {
+    -fx-background-radius: -card-radius 0 0 -card-radius; /* Left rounded only */
+    -fx-clip: "M 0 0 H 190 Q 200 0, 200 10 V 140 Q 200 150, 190 150 H 0 Z";
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+/* Round the button in your room details example */
+.card-button {
+    -fx-background-radius: 15;
+    -fx-background-color: -main-color;
+    -fx-text-fill: white;
+    -fx-padding: 8 20;
+}
+
+/* If using labels inside cards */
+.card-label {
+    -fx-background-radius: 0 -card-radius -card-radius 0; /* Right rounded only */
+}
+
+/* Room Selection Styles */
+.room-scroll-pane {
+    -fx-background: #CBD6F8;
+}
+
+.room-container {
+    -fx-padding: 20;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-pref-width: 100%;
+    -fx-spacing: 20;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 3);
+    -fx-translate-y: -2;
+}
+
+.card-image {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-background-radius: 10 0 0 10;
+}
+
+.card-title {
+    -fx-font-size: 36px;
+    -fx-text-fill: #2A2A2A;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 20;
+}
+
+.card-title:hover {
+    -fx-text-fill: #6E62AA;
+}
+
+/* Remove borders from original design */
+.card .label {
+    -fx-border-width: 0;
 }

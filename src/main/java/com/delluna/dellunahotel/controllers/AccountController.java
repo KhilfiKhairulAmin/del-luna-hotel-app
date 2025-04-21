@@ -6,8 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import com.delluna.dellunahotel.models.Guest;
-import com.delluna.dellunahotel.models.Guest2;
-import com.delluna.dellunahotel.models.GuestManager;
+import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
@@ -27,32 +26,22 @@ public class AccountController {
     @FXML private Label levelLabel;
     @FXML private Label tagLabel;
 
-    Guest2 guest;
+    Guest guest;
+    GuestService guestService = new GuestService();
     
     @FXML
     public void initialize() {
-            ApiClient.getAsync("http://localhost:4567/guest/"+ApiClient.getGuestId(), Guest2.class)
-            .thenAccept(g -> {
-                Platform.runLater(() -> {
-                    guest = g;
-                    guestIdLabel.setText(guest.guestId);
-                    nameLabel.setText(guest.fullName);
-                    emailLabel.setText(guest.email);
-                    phoneLabel.setText(guest.phone);
-                    genderLabel.setText(guest.gender);
-                    pointsLabel.setText(String.valueOf(guest.points));
-                    levelLabel.setText(guest.level);
-                    tagLabel.setText(guest.tag);
-                });
-            })
-            .exceptionally(ex -> {
-                ex.printStackTrace();
-                return null;
-            });
-        }
-        
-    
-    
+        guest = guestService.getCurrentGuest();
+        guestIdLabel.setText(guest.guestId);
+        nameLabel.setText(guest.fullName);
+        emailLabel.setText(guest.email);
+        phoneLabel.setText(guest.phone);
+        genderLabel.setText(guest.gender);
+        pointsLabel.setText(String.valueOf(guest.points));
+        levelLabel.setText(guest.level);
+        tagLabel.setText(guest.tag);
+    }
+
     @FXML
     private void handleEditProfile(ActionEvent event) {
         try {

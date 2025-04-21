@@ -14,12 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import com.delluna.dellunahotel.models.Guest;
-import com.delluna.dellunahotel.models.Guest2;
 import com.delluna.dellunahotel.models.GuestManager;
 import com.delluna.dellunahotel.models.ResponseBody;
+import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.utils.Logger;
 import com.delluna.dellunahotel.utils.Transtition;
 import com.delluna.dellunahotel.utils.UI;
+import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
@@ -68,61 +69,71 @@ public class SignUpController {
         // Reset error messages
         UI.clearErrors(nameError, emailError, phoneError, genderError, passwordError);
 
-        Guest2 g = new Guest2();
-        g.email = emailField.getText();
-        g.passwordHash = passwordField.getText();
-        g.fullName = nameField.getText();
-        g.gender = genderBox.getValue() == null ? "" : genderBox.getValue();
-        g.phone = phoneField.getText();
+        Guest newGuest = new Guest();
+        newGuest.email = emailField.getText();
+        newGuest.passwordHash = passwordField.getText();
+        newGuest.fullName = nameField.getText();
+        newGuest.gender = genderBox.getValue() == null ? "" : genderBox.getValue();
+        newGuest.phone = phoneField.getText();
 
-        ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_up", g, ResponseBody.class)
-            .valueProperty()
-            .addListener((obs, oldVal, newVal) -> {
-                if (newVal != null) {
+        GuestService guestService = new GuestService();
+        
+        try {
+            guestService.createGuest(newGuest);
+        } catch(RuntimeException e) {
+            AlertBox.error("Error", "Email already taken");
+        }
+        loadHomePage(event);
+
+
+        // ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_up", g, ResponseBody.class)
+        //     .valueProperty()
+        //     .addListener((obs, oldVal, newVal) -> {
+        //         if (newVal != null) {
                     
-                    if (newVal.isSuccess) {
-                        UI.showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
-                        loadHomePage(event);
-                    } else {
-                        String prop;
+        //             if (newVal.isSuccess) {
+        //                 UI.showAlert(AlertBox.AlertType.INFORMATION, "Success", "Logged in successfully!");
+        //                 loadHomePage(event);
+        //             } else {
+        //                 String prop;
 
-                        if (newVal.properties.size() == 0) {
-                            UI.showAlert(Alert.AlertType.ERROR, "Error", "Email is already taken");
-                            return;
-                        }
+        //                 if (newVal.properties.size() == 0) {
+        //                     UI.showAlert(AlertBox.AlertType.ERROR, "Error", "Email is already taken");
+        //                     return;
+        //                 }
 
-                        // Check email
-                        prop = newVal.getProperty("email");
-                        if (prop != null) {
-                            emailError.setText(prop);
-                        }
+        //                 // Check email
+        //                 prop = newVal.getProperty("email");
+        //                 if (prop != null) {
+        //                     emailError.setText(prop);
+        //                 }
 
-                        // Check password
-                        prop = newVal.getProperty("password");
-                        if (prop != null) {
-                            passwordError.setText(prop);
-                        }
+        //                 // Check password
+        //                 prop = newVal.getProperty("password");
+        //                 if (prop != null) {
+        //                     passwordError.setText(prop);
+        //                 }
 
-                        // Check password
-                        prop = newVal.getProperty("fullName");
-                        if (prop != null) {
-                            nameError.setText(prop);
-                        }
+        //                 // Check password
+        //                 prop = newVal.getProperty("fullName");
+        //                 if (prop != null) {
+        //                     nameError.setText(prop);
+        //                 }
 
-                        // Check password
-                        prop = newVal.getProperty("gender");
-                        if (prop != null) {
-                            genderError.setText(prop);
-                        }
+        //                 // Check password
+        //                 prop = newVal.getProperty("gender");
+        //                 if (prop != null) {
+        //                     genderError.setText(prop);
+        //                 }
 
-                        // Check password
-                        prop = newVal.getProperty("phone");
-                        if (prop != null) {
-                            phoneError.setText(prop);
-                        }
-                    }
-                }
-            });
+        //                 // Check password
+        //                 prop = newVal.getProperty("phone");
+        //                 if (prop != null) {
+        //                     phoneError.setText(prop);
+        //                 }
+        //             }
+        //         }
+        //     });
     }
 
     /**

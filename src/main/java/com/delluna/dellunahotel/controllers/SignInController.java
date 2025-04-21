@@ -14,7 +14,9 @@ import javafx.stage.Stage;
 
 import com.delluna.dellunahotel.models.Guest2;
 import com.delluna.dellunahotel.models.ResponseBody;
+import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.models.GuestManager;
+import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 import com.delluna.dellunahotel.utils.Transtition;
@@ -46,40 +48,45 @@ public class SignInController {
 
         UI.clearErrors(emailError, passwordError);
 
-        Guest2 g = new Guest2();
-        g.email = emailField.getText();
-        g.passwordHash = passwordField.getText();
+        GuestService guestService = new GuestService();
 
-        ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_in", g, ResponseBody.class)
-            .valueProperty()
-            .addListener((obs, oldVal, newVal) -> {
-                if (newVal != null) {
-                    System.out.println(newVal.isSuccess);
-                    if (newVal.isSuccess) {
-                        UI.showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
-                        loadHomePage(event);
-                    } else {
-                        String prop;
+        try {
+            guestService.authenticate(emailField.getText(), passwordField.getText());
+        } catch (RuntimeException e) {
+            AlertBox.error("Error", "Invalid credentials");
+        }
+        loadHomePage(event);
 
-                        if (newVal.properties.size() == 0) {
-                            UI.showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
-                            return;
-                        }
+        // ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_in", g, ResponseBody.class)
+        //     .valueProperty()
+        //     .addListener((obs, oldVal, newVal) -> {
+        //         if (newVal != null) {
+        //             System.out.println(newVal.isSuccess);
+        //             if (newVal.isSuccess) {
+        //                 UI.showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
+        //                 loadHomePage(event);
+        //             } else {
+        //                 String prop;
 
-                        // Check email
-                        prop = newVal.getProperty("email");
-                        if (prop != null) {
-                            emailError.setText(prop);
-                        }
+        //                 if (newVal.properties.size() == 0) {
+        //                     UI.showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
+        //                     return;
+        //                 }
 
-                        // Check password
-                        prop = newVal.getProperty("password");
-                        if (prop != null) {
-                            passwordError.setText(prop);
-                        }
-                    }
-                }
-            });
+        //                 // Check email
+        //                 prop = newVal.getProperty("email");
+        //                 if (prop != null) {
+        //                     emailError.setText(prop);
+        //                 }
+
+        //                 // Check password
+        //                 prop = newVal.getProperty("password");
+        //                 if (prop != null) {
+        //                     passwordError.setText(prop);
+        //                 }
+        //             }
+        //         }
+        //     });
     }
 
     @FXML private void switchToSignUp(ActionEvent event) {
