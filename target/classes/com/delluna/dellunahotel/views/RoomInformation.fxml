@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #CBD6F8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="com.delluna.dellunahotel.controllers.RoomInformationController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #CBD6F8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: lightgray; -fx-background-color: #6E62AA;">
          <children>
@@ -26,21 +26,15 @@
       </HBox>
       <HBox spacing="5.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/rooms/honeymoon.png" />
-               </image>
-            </ImageView>
-            <VBox prefHeight="150.0" prefWidth="457.0">
+            <ImageView fx:id="roomImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox fx:id="utilitiesContainer" prefHeight="150.0" prefWidth="457.0">
                <children>
-                  <Label text="Honeymoon Suite">
+                  <Label fx:id="roomLabel">
                      <font>
                         <Font name="Times New Roman" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Two People" />
-                  <Label text="Amenities: One queen bed, Private bathroom, TV, Jacuzzi" />
-                  <Label text="Price: RM300 per night" />
+                  <!-- Room utilities Labels -->
                </children>
             </VBox>
          </children>

@@ -24,94 +24,9 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" styleClass="room-scroll-pane">
          <content>
-            <VBox prefWidth="1146.0" spacing="20" styleClass="room-container">
-               <!-- Single Room Card -->
-               <HBox onMouseClicked="#singleRoomDescription" alignment="CENTER_LEFT" fillHeight="false" maxWidth="1946.0" prefHeight="180.0" prefWidth="802.0" styleClass="card" stylesheets="@../styles/styles.css">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="singleImage" fitHeight="150" fitWidth="200" onMouseClicked="#singleRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/single.png" />
-                     </ImageView>
-                     <Label fx:id="singleLabel" styleClass="card-title" text="Single Room" />
-                  </children>
-               </HBox>
+            <VBox fx:id="roomContainer" prefWidth="1146.0" spacing="20" styleClass="room-container">
 
-               <!-- Double Room Card -->
-               <HBox onMouseClicked="#doubleRoomDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="doubleImage" fitHeight="150" fitWidth="200" onMouseClicked="#doubleRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/double.png" />
-                     </ImageView>
-                     <Label fx:id="doubleLabel" styleClass="card-title" text="Double Room" />
-                  </children>
-               </HBox>
-
-               <!-- Triple Room Card -->
-               <HBox onMouseClicked="#tripleRoomDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="tripleImage" fitHeight="150" fitWidth="200" onMouseClicked="#tripleRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/triple.png" />
-                     </ImageView>
-                     <Label fx:id="tripleLabel" styleClass="card-title" text="Triple Room" />
-                  </children>
-               </HBox>
-
-               <!-- Quad Room Card -->
-               <HBox onMouseClicked="#quadRoomDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="quadImage" fitHeight="150" fitWidth="200" onMouseClicked="#quadRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/quad.png" />
-                     </ImageView>
-                     <Label fx:id="quadLabel" styleClass="card-title" text="Quad Room" />
-                  </children>
-               </HBox>
-
-               <!-- Executive Room Card -->
-               <HBox onMouseClicked="#executiveRoomDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="executiveImage" fitHeight="150" fitWidth="200" onMouseClicked="#executiveRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/executive.png" />
-                     </ImageView>
-                     <Label fx:id="executiveLabel" styleClass="card-title" text="Executive Room" />
-                  </children>
-               </HBox>
-
-               <!-- Suite Card -->
-               <HBox onMouseClicked="#suiteDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="suiteImage" fitHeight="150" fitWidth="200" onMouseClicked="#suiteDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/suite.png" />
-                     </ImageView>
-                     <Label fx:id="suiteLabel" styleClass="card-title" text="Suite" />
-                  </children>
-               </HBox>
-
-               <!-- Family Room Card -->
-               <HBox onMouseClicked="#familyRoomDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="familyImage" fitHeight="150" fitWidth="200" onMouseClicked="#familyRoomDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/family.png" />
-                     </ImageView>
-                     <Label fx:id="familyLabel" styleClass="card-title" text="Family Room" />
-                  </children>
-               </HBox>
-
-               <!-- Honeymoon Suite Card -->
-               <HBox onMouseClicked="#honeymoonSuiteDescription" alignment="CENTER_LEFT" styleClass="card">
-                  <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
-                  <children>
-                     <ImageView fx:id="honeymoonImage" fitHeight="150" fitWidth="200" onMouseClicked="#honeymoonSuiteDescription" styleClass="card-image">
-                        <Image url="@../images/rooms/honeymoon.png" />
-                     </ImageView>
-                     <Label fx:id="honeymoonLabel" styleClass="card-title" text="Honeymoon Suite" />
-                  </children>
-               </HBox>
+ 
             </VBox>
          </content>
       </ScrollPane>

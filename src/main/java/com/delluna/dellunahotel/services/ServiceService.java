@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceService {
-    private static final String SERVICES_FILE_PATH = "src/main/resources/com/delluna/dellunahotel/services.json";
+    private static final String SERVICES_FILE_PATH = "src/main/resources/com/delluna/dellunahotel/database/services.json";
 
     private List<Service> services = new ArrayList<>();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();

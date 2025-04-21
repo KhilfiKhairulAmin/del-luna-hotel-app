@@ -3,25 +3,12 @@ package com.delluna.dellunahotel.controllers;
 import javafx.event.ActionEvent;  // Event handling package
 
 import javafx.fxml.FXML; 		  // FXML handling packages
-import javafx.fxml.FXMLLoader;
-
 import javafx.scene.control.*;	  // UI components package
-
-import javafx.scene.Node;		  // Scene management packages
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.utils.AlertBox;
-import com.delluna.dellunahotel.utils.ApiClient;
-import com.delluna.dellunahotel.utils.LoaderFX;
 import com.delluna.dellunahotel.utils.Transtition;
 import com.delluna.dellunahotel.utils.UI;
-
-import java.io.IOException;		  // Error handling package
-
-import java.util.regex.Pattern;   // Input validation package
 
 
 public class SignInController {

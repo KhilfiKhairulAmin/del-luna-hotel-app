@@ -12,8 +12,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RoomService {
-    private static final String ROOMS_FILE_PATH = "src/main/resources/rooms.json";
-    private static final String ROOM_TYPES_FILE_PATH = "src/main/resources/roomTypes.json";
+    private static final String ROOMS_FILE_PATH = "src/main/resources/com/delluna/dellunahotel/database/rooms.json";
+    private static final String ROOM_TYPES_FILE_PATH = "src/main/resources/com/delluna/dellunahotel/database/roomTypes.json";
 
     private List<Room> rooms = new ArrayList<>();
     private List<RoomType> roomTypes = new ArrayList<>();
