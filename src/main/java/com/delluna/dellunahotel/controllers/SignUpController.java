@@ -14,8 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import com.delluna.dellunahotel.models.Guest;
-import com.delluna.dellunahotel.models.GuestManager;
-import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.services.GuestService;
 import com.delluna.dellunahotel.utils.Logger;
 import com.delluna.dellunahotel.utils.Transtition;

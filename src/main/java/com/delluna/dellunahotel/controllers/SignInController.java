@@ -12,10 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import com.delluna.dellunahotel.models.Guest2;
-import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.services.GuestService;
-import com.delluna.dellunahotel.models.GuestManager;
 import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;

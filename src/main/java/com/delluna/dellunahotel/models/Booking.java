@@ -1,4 +1,4 @@
-package models;
+package com.delluna.dellunahotel.models;
 
 public class Booking {
   public String bookingId;
@@ -7,6 +7,10 @@ public class Booking {
   public String[] serviceIds;
   public String checkInDate;
   public String checkOutDate;
-  public String invoiceId;
+  private double totalRoomCost;
+  public double totalServiceCost;
+  public double taxAmount;
+  public double discountAmount;
+  public double grandTotal;
   public int pointsObtained;
 }

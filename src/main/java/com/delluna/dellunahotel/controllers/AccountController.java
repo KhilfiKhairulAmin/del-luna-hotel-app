@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import com.delluna.dellunahotel.models.Guest;
 import com.delluna.dellunahotel.services.GuestService;
-import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 import com.delluna.dellunahotel.utils.UI;

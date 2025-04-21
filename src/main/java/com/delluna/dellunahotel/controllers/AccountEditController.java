@@ -3,20 +3,13 @@ package com.delluna.dellunahotel.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.delluna.dellunahotel.models.Guest;
-import com.delluna.dellunahotel.models.GuestManager;
-import com.delluna.dellunahotel.models.ResponseBody;
 import com.delluna.dellunahotel.services.GuestService;
-import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
-import com.delluna.dellunahotel.utils.UI;
-
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AccountEditController {
     @FXML private TextField fullNameField;

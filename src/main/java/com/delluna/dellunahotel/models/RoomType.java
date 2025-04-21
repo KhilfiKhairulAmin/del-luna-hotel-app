@@ -1,4 +1,4 @@
-package models;
+package com.delluna.dellunahotel.models;
 
 public class RoomType {
   public String typeId;
