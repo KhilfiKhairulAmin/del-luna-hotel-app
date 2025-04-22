@@ -5,6 +5,9 @@ import javax.swing.*;
 
 import com.delluna.dellunahotel.utils.LoaderFX;
 
+import javafx.application.Platform;
+import javafx.stage.Stage;
+
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -40,7 +43,7 @@ public class HotelBooking2
     };
 
     // Constructor to initialize the GUI
-    public HotelBooking2() 
+    public HotelBooking2(String roomNum) 
     {
         selectedServices = new ArrayList<>();               // Initialize selected services list
         checkBoxes = new JCheckBox[services.length];        // Allocate space for checkboxes
@@ -150,7 +153,15 @@ public class HotelBooking2
         });
 
         // "Next" button simulation
-        nextButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Proceeding to Next Step..."));
+        nextButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(frame, "Proceeding to Next Step...");
+            // Swing Side
+        String username = "user123";
+        Platform.runLater(() -> {
+            new FXWindow(username).start(new Stage());
+        });
+
+        });
 
         // Recommendation quiz
         recommendButton.addActionListener(e -> showServiceRecommendationQuiz());
@@ -235,7 +246,7 @@ public class HotelBooking2
             {
                 imageLabel.setText("Image not found!");
                 imageLabel.setIcon(null);
-            } 
+            }
             else 
             {
                 Image img = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH); // Resize image

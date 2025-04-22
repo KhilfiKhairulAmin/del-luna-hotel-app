@@ -77,9 +77,8 @@ public class SelectRoomsController {
   private void handleContinue() {
       System.out.println("Continue clicked with selected card!");
       Label roomNumLabel = (Label) ((VBox) selectedCard.getChildren().get(0)).getChildren().getFirst();
-      System.out.println(roomNumLabel.getText().split(" ")[1]);
               SwingUtilities.invokeLater(() -> {
-            new HotelBooking2();    // create and show your Swing JFrame
+            new HotelBooking2(roomNumLabel.getText().split(" ")[1]);    // create and show your Swing JFrame
         });
 
         // 2) Close the JavaFX window (optional)

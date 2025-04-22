@@ -5,6 +5,12 @@ import java.awt.*; // for layouts, colours, fonts
 
 public class ServicesInfo 
 {
+    private String roomNum;
+
+    public ServicesInfo(String roomNum) {
+        this.roomNum = roomNum;
+    }
+    
     public static void main(String[] args) 
     {
     	// create main application window (frame)
@@ -173,7 +179,7 @@ public class ServicesInfo
         bookBtn.addActionListener(e -> 
         {
             frame.dispose(); // Close the current frame
-            SwingUtilities.invokeLater(() -> new HotelBooking2()); // Open the HotelBooking2 window
+            SwingUtilities.invokeLater(() -> new HotelBooking2(roomNum)); // Open the HotelBooking2 window
         });
 
         // When "Skip" is clicked
