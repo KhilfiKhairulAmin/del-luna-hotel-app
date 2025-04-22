@@ -125,6 +125,19 @@ public class BookingService {
         return removed;
     }
 
+    public List<Room> getAvailableRoomsByTypeAndDate(String roomTypeId, String dateStart, String dateEnd) {
+        List<Room> roomsOfType = roomService.getRoomsByType(roomTypeId);
+        List<Room> availableRooms = new ArrayList<>();
+        System.out.println(roomsOfType);
+        for (Room room : roomsOfType) {
+            if (isRoomAvailable(room.roomNum, dateStart, dateEnd)) {
+                availableRooms.add(room);
+            }
+        }
+    
+        return availableRooms;
+    }
+
     public List<String> getAvailableRoomTypes(String dateStart, String dateEnd) {
         List<String> availableRoomTypes = new ArrayList<>();
     

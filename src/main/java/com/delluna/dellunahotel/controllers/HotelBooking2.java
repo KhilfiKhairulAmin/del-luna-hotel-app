@@ -2,6 +2,9 @@ package com.delluna.dellunahotel.controllers;
 
 // Import necessary Swing and AWT components
 import javax.swing.*;
+
+import com.delluna.dellunahotel.utils.LoaderFX;
+
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -202,22 +205,22 @@ public class HotelBooking2
         switch (service) 
         {
             case "Spa":
-                imagePath = "/spa.jpg";
+                imagePath = "spa.jpg";
                 break;
             case "Couple Decorations":
-                imagePath = "/couple_decorations.jpg";
+                imagePath = "couple_decorations.jpg";
                 break;
             case "Gymnasium":
-                imagePath = "/gym.jpg";
+                imagePath = "gym.jpg";
                 break;
             case "Minibar":
-                imagePath = "/minibar.jpg";
+                imagePath = "minibar.jpg";
                 break;
             case "Laundry":
-                imagePath = "/laundry.jpg";
+                imagePath = "laundry.jpg";
                 break;
             case "Transportations":
-                imagePath = "/transportation.jpg";
+                imagePath = "transportation.jpg";
                 break;
             default:
                 imagePath = "";
@@ -225,26 +228,26 @@ public class HotelBooking2
         }
 
         // Load and scale image if path is available
-        // if (!imagePath.isEmpty()) 
-        // {
-        //     // ImageIcon icon = new ImageIcon(getClass().getResource("images/" + imagePath));
-        //     if (icon.getIconWidth() == -1) // -1 means image not found
-        //     {
-        //         imageLabel.setText("Image not found!");
-        //         imageLabel.setIcon(null);
-        //     } 
-        //     else 
-        //     {
-        //         // Image img = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH); // Resize image
-        //         // imageLabel.setIcon(new ImageIcon(img));
-        //         // imageLabel.setText("");
-        //     }
-        // } 
-        // else 
-        // {
-        //     // imageLabel.setText("No image available");
-        //     // imageLabel.setIcon(null);
-        // }
+        if (!imagePath.isEmpty()) 
+        {
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/delluna/dellunahotel/images/services/" + imagePath));
+            if (icon.getIconWidth() == -1) // -1 means image not found
+            {
+                imageLabel.setText("Image not found!");
+                imageLabel.setIcon(null);
+            } 
+            else 
+            {
+                Image img = icon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH); // Resize image
+                imageLabel.setIcon(new ImageIcon(img));
+                imageLabel.setText("");
+            }
+        } 
+        else 
+        {
+            imageLabel.setText("No image available");
+            imageLabel.setIcon(null);
+        }
 
         descriptionLabel.setText(description); // Update description label
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.delluna.dellunahotel.controllers.SelectRoomsController">
+    <children>
+        <ScrollPane fitToWidth="true" prefWidth="800.0" prefHeight="600.0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <content>
+                <GridPane fx:id="roomGrid" hgap="20" vgap="20" style="-fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);">
+                    <padding>
+                        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                    </padding>
+                    <!-- Room cards will be added dynamically -->
+                </GridPane>
+            </content>
+        </ScrollPane>
+    </children>
+    <Button fx:id="continueButton" text="Continue" disable="true" onAction="#handleContinue"/>
+
+</AnchorPane>

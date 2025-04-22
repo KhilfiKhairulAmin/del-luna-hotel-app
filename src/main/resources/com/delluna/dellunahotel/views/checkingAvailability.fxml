@@ -62,7 +62,7 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Button fx:id="checkButton" mnemonicParsing="false" style="-fx-background-color: #6e62aa; -fx-cursor: hand;" text="Check" textFill="WHITE">
+                     <Button onAction="#handleBack" fx:id="backButton" mnemonicParsing="false" style="-fx-background-color: #6e62aa; -fx-cursor: hand;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -70,6 +70,16 @@
                   <Insets />
                </HBox.margin>
             </Button>
+            <Button onAction="#handleCheck" fx:id="checkButton" mnemonicParsing="false" style="-fx-background-color: #6e62aa; -fx-cursor: hand;" text="Check" textFill="WHITE"
+            >
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+
          </children>
          <padding>
             <Insets top="20.0" />

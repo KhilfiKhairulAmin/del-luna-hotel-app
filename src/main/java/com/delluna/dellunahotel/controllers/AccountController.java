@@ -48,10 +48,10 @@ public class AccountController {
             Node editView = loader.load();
             
             AccountEditController editController = loader.getController();
-            editController.setGuestData(guest.fullName, guest.email, guest.phone, guest.gender, guest.tag, guest);
+            editController.setGuestData(guest);
             
             // Get the MainController instance and update content
-            MainController.getInstance().setContent(editView);
+            MainController.getInstance().changeView("account_edit.fxml", Sidebar.ACCOUNT, editView);
         } catch (IOException e) {
             e.printStackTrace();
             // Show error alert

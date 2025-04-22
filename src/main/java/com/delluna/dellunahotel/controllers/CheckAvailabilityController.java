@@ -3,16 +3,24 @@ package com.delluna.dellunahotel.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.fxml.Initializable; //implement Initializable
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.delluna.dellunahotel.models.Room;
+import com.delluna.dellunahotel.models.RoomType;
+import com.delluna.dellunahotel.services.BookingService;
+import com.delluna.dellunahotel.services.RoomService;
+import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
 import java.time.LocalDate;
@@ -24,6 +32,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class CheckAvailabilityController implements Initializable{
 	@FXML
@@ -38,6 +47,8 @@ public class CheckAvailabilityController implements Initializable{
 	private Label endDateLabel;
 	@FXML
 	private Button checkButton;
+
+	RoomType roomType;
 	
 	private LocalDate startDate;
 	private LocalDate endDate;
@@ -86,6 +97,40 @@ public class CheckAvailabilityController implements Initializable{
 	    }
 		
 		drawCalendar(); //Initial calendar draw
+	}
+
+	public void setData(RoomType roomType) {
+		this.roomType = roomType;
+	}
+
+	@FXML private void handleCheck() {
+		String startDate = startDateLabel.getText();
+		String endDate = endDateLabel.getText();
+
+		BookingService bookingService = new BookingService();
+		List<Room> availRooms = bookingService.getAvailableRoomsByTypeAndDate(roomType.typeId, startDate, endDate);
+		String out = "";
+		for (Room r: availRooms) {
+			out += r + "\n";
+		}
+		AlertBox.information("Available Rooms", out);
+
+
+		FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML("SelectRoomss.fxml"));
+
+		try {
+			Node editView = loader.load();
+		
+			SelectRoomsController editController = loader.getController();
+			
+			for (Room r: availRooms) {
+				editController.addRoomCard(r.roomNum, r.floorLevel, r.roomTypeId);
+			}
+	
+			MainController.getInstance().changeView("SelectRoomss.fxml", Sidebar.EXPLORE, editView);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void drawCalendar()
@@ -171,6 +216,11 @@ public class CheckAvailabilityController implements Initializable{
 				row++;
 			}
 		}
+	}
+
+	@FXML private void handleBack() {
+		MainController.getInstance().resetCache("checkingAvailability.fxml");
+		MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
 	}
 	
 	private void handleDateSelection(LocalDate currentDate)

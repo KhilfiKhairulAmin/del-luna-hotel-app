@@ -29,6 +29,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+enum Sidebar {
+    HOME,
+    EXPLORE,
+    BOOKINGS,
+    ACCOUNT
+}
+
 public class MainController {
     private Stage stage;
     
@@ -65,7 +72,7 @@ public class MainController {
     private StackPane selectedPane;
     
     private static MainController instance;
-    
+
     public MainController() {
         instance = this;
     }
@@ -77,8 +84,15 @@ public class MainController {
     public void setContent(Node node) {
         contentPane.getChildren().setAll(node);
     }
+
+    private final Map<Sidebar, String> sidebarCache = new HashMap<>();
+
     
     public void initialize() {
+        sidebarCache.put(Sidebar.HOME, "home.fxml");
+        sidebarCache.put(Sidebar.EXPLORE, "SelectingRooms2.fxml");
+        sidebarCache.put(Sidebar.ACCOUNT, "account.fxml");
+
     	ViewManager.setMainPane(mainPane);
     	
         // Load the sidebar logo
@@ -86,7 +100,7 @@ public class MainController {
         appLogoContainer.setFill(new ImagePattern(image));
         
         selectedPane = homeStack;
-        loadView("home.fxml"); // Load home view by default
+        changeView("home.fxml", Sidebar.HOME); // Load home view by default
         selectedPane.setStyle("-fx-background-color: #d5acd1;");
         
         int count = 0, except1 = 1, except2 = 6;
@@ -116,87 +130,154 @@ public class MainController {
         
         handleSidebarClick(event);
     }
+
     
     @FXML
     private void handleSidebarClick(MouseEvent event) {
         StackPane clickedStack = (StackPane) event.getSource();
         if (clickedStack == homeStack) {
-            loadView("home.fxml");
+            changeView(sidebarCache.get(Sidebar.HOME), Sidebar.HOME);
         } else if (clickedStack == exploreStack) {
-            loadView("SelectingRooms2.fxml");
+            changeView(sidebarCache.get(Sidebar.EXPLORE), Sidebar.EXPLORE);
         } else if (clickedStack == rewardsStack) {
-            loadView("rewards.fxml");
+            // changeView("rewards.fxml");
         } else if (clickedStack == bookingsStack) {
-            loadView("bookings.fxml");
+            // changeView("bookings.fxml");
         } else if (clickedStack == accountStack) {
-            loadView("account.fxml");
+            changeView(sidebarCache.get(Sidebar.ACCOUNT), Sidebar.ACCOUNT);
         } else if (clickedStack == logoutStack) {
-            loadView("logout.fxml");
+            // changeView("logout.fxml");
         }
     }
+
+    private final Map<String, Node> viewCache = new HashMap<>();
+    private Sidebar curView = Sidebar.HOME; 
+
+    public void resetCache(String fxmlFilename) {
+        viewCache.put(fxmlFilename, null);
+    }
+
+    public void changeView(String FXMLfilename, Sidebar sidebar) {
+        try {
+            FXMLLoader node = new FXMLLoader(LoaderFX.getFXML(FXMLfilename));
+            Node view = node.load();
+            Node newView = getCachedView(FXMLfilename, view);
+
+            if (curView == sidebar) {
+                changeContentView(newView);
+            } else {
+                changeSidebarView(newView);
+            }
+            curView = sidebar;
+            sidebarCache.put(sidebar, FXMLfilename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeView(String FXMLfilename, Sidebar sidebar, Node ref) {
+        try {
+            Node newView = getCachedView(FXMLfilename, ref);
+
+            if (curView == sidebar) {
+                changeContentView(newView);
+            } else {
+                changeSidebarView(newView);
+            }
+            curView = sidebar;
+            sidebarCache.put(sidebar, FXMLfilename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void changeSidebarView(Node newView) {
+            // If it's already visible, skip
+            if (contentPane.getChildren().contains(newView)) {
+                return;
+            }
     
-    private Map<String, Node> viewCache = new HashMap<>();
+            Node oldView = contentPane.getChildren().isEmpty() ? null : contentPane.getChildren().get(0);
+    
+            newView.setTranslateX(-mainPane.getWidth()); // Start off-screen
+            newView.setOpacity(0);
+            
+            Rectangle clip = new Rectangle();
+            clip.widthProperty().bind(contentPane.widthProperty());
+            clip.heightProperty().bind(contentPane.heightProperty());
+            newView.setClip(clip);
+    
+            contentPane.getChildren().add(newView);
+    
+            TranslateTransition slideIn = new TranslateTransition(Duration.millis(600), newView);
+            slideIn.setFromX(-mainPane.getWidth());
+            slideIn.setToX(0);
+    
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(500), newView);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+    
+            if (oldView != null) {
+                TranslateTransition slideOut = new TranslateTransition(Duration.millis(550), oldView);
+                slideOut.setFromX(0);
+                slideOut.setToX(mainPane.getWidth() * 0.3);
+    
+                ParallelTransition transition = new ParallelTransition(slideOut, slideIn, fadeIn);
+                transition.setOnFinished(e -> {
+                    contentPane.getChildren().remove(oldView);
+                    oldView.setTranslateX(0);
+                    newView.setClip(null);
+                });
+                transition.play();
+            } else {
+                newView.setTranslateX(0);
+                newView.setOpacity(1);
+            }
+    }
 
-private void loadView(String fxmlFilename) {
-    try {
-        Node newView = getOrLoadView(fxmlFilename);
+    private void changeContentView(Node newView) {
+        // If it's already visible, skip
+        if (contentPane.getChildren().contains(newView)) {
+            return;
+        }
+    
         Node oldView = contentPane.getChildren().isEmpty() ? null : contentPane.getChildren().get(0);
-
-        // 1. PREPARE THE NEW VIEW
-        newView.setTranslateX(-mainPane.getWidth()); // Start from left
+    
+        // Prepare the new view
         newView.setOpacity(0);
-        
-        // Create clipping rectangle matching content area
-        Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(contentPane.widthProperty());
-        clip.heightProperty().bind(contentPane.heightProperty());
-        newView.setClip(clip);
-        
         contentPane.getChildren().add(newView);
-
-        // 2. SET UP ANIMATIONS
-        // Animation for old view (slides right)
-        TranslateTransition slideOut = new TranslateTransition(Duration.millis(550), oldView);
-        slideOut.setFromX(0);
-        slideOut.setToX(mainPane.getWidth()*0.3);
-        slideOut.setInterpolator(Interpolator.EASE_OUT);
-
-        // Animation for new view (slides in from left)
-        TranslateTransition slideIn = new TranslateTransition(Duration.millis(600), newView);
-        slideIn.setFromX(-mainPane.getWidth());
-        slideIn.setToX(0);
-        
+    
+        // Fade in for the new view
         FadeTransition fadeIn = new FadeTransition(Duration.millis(500), newView);
         fadeIn.setFromValue(0);
         fadeIn.setToValue(1);
-
-        // 3. EXECUTE TRANSITION
+    
         if (oldView != null) {
-            ParallelTransition transition = new ParallelTransition(slideOut, slideIn, fadeIn);
-            transition.setOnFinished(e -> {
+            // Fade out the old view
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(400), oldView);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setOnFinished(e -> {
                 contentPane.getChildren().remove(oldView);
-                oldView.setTranslateX(0);
-                newView.setClip(null); // Remove clip after animation
             });
+    
+            // Play both transitions together
+            ParallelTransition transition = new ParallelTransition(fadeOut, fadeIn);
             transition.play();
         } else {
-            newView.setTranslateX(0);
-            newView.setOpacity(1);
+            // No old view, just fade in
+            fadeIn.play();
         }
-
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
+    
+    
 
-private Node getOrLoadView(String fxmlFilename) throws IOException {
-    if (viewCache.containsKey(fxmlFilename)) {
+private Node getCachedView(String fxmlFilename, Node def) throws IOException {
+    if (viewCache.containsKey(fxmlFilename) && viewCache.get(fxmlFilename) != null) {
         return viewCache.get(fxmlFilename);
     } else {
-        FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML(fxmlFilename));
-        Node view = loader.load();
-        viewCache.put(fxmlFilename, view);
-        return view;
+        viewCache.put(fxmlFilename, def);
+        return def;
     }
 }
 

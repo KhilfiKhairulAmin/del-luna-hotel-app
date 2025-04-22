@@ -38,6 +38,8 @@ public class RoomService {
             e.printStackTrace();
             roomTypes = new ArrayList<>();
         }
+        System.out.println(roomTypes.size());
+        System.out.println(rooms.size());
     }
 
     private void loadRooms() {

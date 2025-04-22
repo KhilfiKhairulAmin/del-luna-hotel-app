@@ -23,23 +23,18 @@ public class AccountEditController {
     GuestService guestService = new GuestService();
     
     // Set initial values from account info
-    public void setGuestData(String fullName, String email, String phone, String gender, String tag, Guest guest) {
-        fullNameField.setText(fullName);
-        emailField.setText(email);
-        phoneField.setText(phone);
-        displayGenderField.setText(gender);
-        tagField.setText(tag);
+    public void setGuestData(Guest guest) {
+        fullNameField.setText(guest.fullName);
+        emailField.setText(guest.email);
+        phoneField.setText(guest.phone);
+        displayGenderField.setText(guest.gender);
+        tagField.setText(guest.tag);
         this.guest = guest;
     }
     
     @FXML
     private void handleCancel(ActionEvent event) {
-        try {
-            Node accountView = FXMLLoader.load(LoaderFX.getFXML("account.fxml"));
-            MainController.getInstance().setContent(accountView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MainController.getInstance().changeView("account.fxml", Sidebar.ACCOUNT);
     }
     
     @FXML

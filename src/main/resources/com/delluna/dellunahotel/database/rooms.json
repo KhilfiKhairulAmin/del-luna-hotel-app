@@ -2,231 +2,231 @@
   {
     "roomNum": "101",
     "floorLevel": 1,
-    "roomType": "1"
+    "roomTypeId": "1"
   },
   {
     "roomNum": "102",
     "floorLevel": 1,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "103",
-    "floorLevel": 2,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "104",
-    "floorLevel": 2,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "105",
-    "floorLevel": 3,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "106",
-    "floorLevel": 3,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "107",
-    "floorLevel": 4,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "108",
-    "floorLevel": 4,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "109",
-    "floorLevel": 1,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "110",
-    "floorLevel": 2,
-    "roomType": "1"
-  },
-  {
-    "roomNum": "201",
-    "floorLevel": 1,
-    "roomType": "2"
-  },
-  {
-    "roomNum": "202",
-    "floorLevel": 1,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
     "roomNum": "203",
     "floorLevel": 2,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
     "roomNum": "204",
     "floorLevel": 2,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
-    "roomNum": "205",
+    "roomNum": "305",
     "floorLevel": 3,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
-    "roomNum": "206",
+    "roomNum": "306",
     "floorLevel": 3,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
-    "roomNum": "207",
+    "roomNum": "407",
     "floorLevel": 4,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
-    "roomNum": "208",
+    "roomNum": "408",
     "floorLevel": 4,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
-    "roomNum": "209",
+    "roomNum": "109",
     "floorLevel": 1,
-    "roomType": "2"
+    "roomTypeId": "1"
   },
   {
     "roomNum": "210",
     "floorLevel": 2,
-    "roomType": "2"
+    "roomTypeId": "1"
+  },
+  {
+    "roomNum": "103",
+    "floorLevel": 1,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "104",
+    "floorLevel": 1,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "201",
+    "floorLevel": 2,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "202",
+    "floorLevel": 2,
+    "roomTypeId": "2"
   },
   {
     "roomNum": "301",
-    "floorLevel": 1,
-    "roomType": "3"
+    "floorLevel": 3,
+    "roomTypeId": "2"
   },
   {
     "roomNum": "302",
+    "floorLevel": 3,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "401",
+    "floorLevel": 4,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "402",
+    "floorLevel": 4,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "105",
+    "floorLevel": 1,
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "205",
     "floorLevel": 2,
-    "roomType": "3"
+    "roomTypeId": "2"
+  },
+  {
+    "roomNum": "106",
+    "floorLevel": 1,
+    "roomTypeId": "3"
+  },
+  {
+    "roomNum": "206",
+    "floorLevel": 2,
+    "roomTypeId": "3"
   },
   {
     "roomNum": "303",
     "floorLevel": 3,
-    "roomType": "3"
+    "roomTypeId": "3"
   },
   {
-    "roomNum": "304",
+    "roomNum": "404",
     "floorLevel": 4,
-    "roomType": "3"
+    "roomTypeId": "3"
   },
   {
-    "roomNum": "305",
+    "roomNum": "405",
     "floorLevel": 4,
-    "roomType": "3"
+    "roomTypeId": "3"
   },
   {
-    "roomNum": "306",
+    "roomNum": "107",
     "floorLevel": 1,
-    "roomType": "4"
+    "roomTypeId": "4"
   },
   {
-    "roomNum": "307",
+    "roomNum": "207",
     "floorLevel": 2,
-    "roomType": "4"
+    "roomTypeId": "4"
   },
   {
     "roomNum": "308",
     "floorLevel": 3,
-    "roomType": "4"
+    "roomTypeId": "4"
   },
   {
-    "roomNum": "309",
+    "roomNum": "409",
     "floorLevel": 4,
-    "roomType": "4"
+    "roomTypeId": "4"
   },
   {
     "roomNum": "310",
     "floorLevel": 3,
-    "roomType": "4"
+    "roomTypeId": "4"
   },
   {
-    "roomNum": "401",
+    "roomNum": "208",
     "floorLevel": 2,
-    "roomType": "7"
+    "roomTypeId": "7"
   },
   {
-    "roomNum": "402",
+    "roomNum": "304",
     "floorLevel": 3,
-    "roomType": "7"
+    "roomTypeId": "7"
   },
   {
     "roomNum": "403",
     "floorLevel": 4,
-    "roomType": "7"
+    "roomTypeId": "7"
   },
   {
-    "roomNum": "501",
+    "roomNum": "406",
     "floorLevel": 4,
-    "roomType": "5"
+    "roomTypeId": "5"
   },
   {
     "roomNum": "502",
     "floorLevel": 5,
-    "roomType": "5"
-  },
-  {
-    "roomNum": "503",
-    "floorLevel": 6,
-    "roomType": "5"
-  },
-  {
-    "roomNum": "601",
-    "floorLevel": 4,
-    "roomType": "6"
-  },
-  {
-    "roomNum": "602",
-    "floorLevel": 5,
-    "roomType": "6"
+    "roomTypeId": "5"
   },
   {
     "roomNum": "603",
     "floorLevel": 6,
-    "roomType": "6"
+    "roomTypeId": "5"
   },
   {
-    "roomNum": "701",
+    "roomNum": "410",
     "floorLevel": 4,
-    "roomType": "8"
+    "roomTypeId": "6"
   },
   {
-    "roomNum": "702",
+    "roomNum": "501",
+    "floorLevel": 5,
+    "roomTypeId": "6"
+  },
+  {
+    "roomNum": "601",
+    "floorLevel": 6,
+    "roomTypeId": "6"
+  },
+  {
+    "roomNum": "411",
     "floorLevel": 4,
-    "roomType": "8"
+    "roomTypeId": "8"
   },
   {
-    "roomNum": "703",
+    "roomNum": "412",
+    "floorLevel": 4,
+    "roomTypeId": "8"
+  },
+  {
+    "roomNum": "503",
     "floorLevel": 5,
-    "roomType": "8"
+    "roomTypeId": "8"
   },
   {
-    "roomNum": "704",
+    "roomNum": "504",
     "floorLevel": 5,
-    "roomType": "8"
+    "roomTypeId": "8"
   },
   {
-    "roomNum": "705",
+    "roomNum": "605",
     "floorLevel": 6,
-    "roomType": "8"
+    "roomTypeId": "8"
   },
   {
-    "roomNum": "706",
+    "roomNum": "606",
     "floorLevel": 6,
-    "roomType": "8"
+    "roomTypeId": "8"
   },
   {
-    "roomNum": "707",
+    "roomNum": "607",
     "floorLevel": 6,
-    "roomType": "8"
+    "roomTypeId": "8"
   }
 ]

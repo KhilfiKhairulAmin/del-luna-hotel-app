@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="com.delluna.dellunahotel.controllers.RoomInformationController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #CBD6F8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vbox" fx:controller="com.delluna.dellunahotel.controllers.RoomInformationController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #CBD6F8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: lightgray; -fx-background-color: #6E62AA;">
          <children>
@@ -41,7 +41,7 @@
       </HBox>
       <VBox alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: #6E62AA;" text="Check Availability" textFill="WHITE">
+            <Button fx:id="button" onAction="#handleClick" alignment="CENTER" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: #6E62AA;" text="Check Availability" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
