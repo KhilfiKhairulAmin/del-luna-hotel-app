@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import com.delluna.dellunahotel.models.Room;
 import com.delluna.dellunahotel.models.RoomType;
 import com.delluna.dellunahotel.services.BookingService;
+import com.delluna.dellunahotel.services.BookingSingleton;
 import com.delluna.dellunahotel.services.RoomService;
 import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.LoaderFX;
@@ -59,6 +60,8 @@ public class CheckAvailabilityController implements Initializable{
 	Year currentYear = Year.now();
 	String currentYearName = currentYear.toString();
 	String nextYearName = currentYear.plusYears(1).toString();
+
+	private BookingSingleton bs = BookingSingleton.getInstance();
 	
 	private ObservableList <String> monthList = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 	private ObservableList <String> yearList = FXCollections.observableArrayList(currentYearName, nextYearName);
@@ -113,6 +116,8 @@ public class CheckAvailabilityController implements Initializable{
 		for (Room r: availRooms) {
 			out += r + "\n";
 		}
+
+		bs.setDate(startDate, endDate);  // Save the date
 		AlertBox.information("Available Rooms", out);
 
 
@@ -221,6 +226,7 @@ public class CheckAvailabilityController implements Initializable{
 	@FXML private void handleBack() {
 		MainController.getInstance().resetCache("checkingAvailability.fxml");
 		MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
+		bs.resetBooking();
 	}
 	
 	private void handleDateSelection(LocalDate currentDate)

@@ -7,7 +7,7 @@ public class Booking {
   public String[] serviceIds;
   public String checkInDate;
   public String checkOutDate;
-  private double totalRoomCost;
+  public double totalRoomCost;
   public double totalServiceCost;
   public double taxAmount;
   public double discountAmount;

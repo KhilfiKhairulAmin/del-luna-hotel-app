@@ -2,6 +2,11 @@ package com.delluna.dellunahotel.controllers;
 
 import javax.swing.SwingUtilities;
 
+import com.delluna.dellunahotel.models.Booking;
+import com.delluna.dellunahotel.services.BookingListener;
+import com.delluna.dellunahotel.services.BookingSingleton;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,12 +19,29 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class SelectRoomsController {
+public class SelectRoomsController implements BookingListener {
   @FXML private GridPane roomGrid;
   @FXML private Button continueButton; // Ensure it's in your FXML
   private int roomCount = 0;
+  private int count = 0;
 
   private StackPane selectedCard = null;
+
+  @FXML
+  public void initialize() {
+    BookingSingleton.getInstance().addListener(this);
+  } 
+  
+  @Override
+  public void onBookingChanged(Booking booking) {
+      Platform.runLater(() -> {
+          count++;
+          if (count < 2) {
+            return;
+          }
+          MainController.getInstance().changeView("Payment.fxml", Sidebar.EXPLORE);
+      });
+  }
 
   public void addRoomCard(String roomNumber, int floor, String type) {
       StackPane card = new StackPane();
@@ -73,17 +95,20 @@ public class SelectRoomsController {
       return "-fx-background-color: #E3F2FD; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #2196F3; -fx-border-width: 2;";
   }
 
+  BookingSingleton bs = BookingSingleton.getInstance();
+
   @FXML
   private void handleContinue() {
-      System.out.println("Continue clicked with selected card!");
-      Label roomNumLabel = (Label) ((VBox) selectedCard.getChildren().get(0)).getChildren().getFirst();
-              SwingUtilities.invokeLater(() -> {
-            new HotelBooking2(roomNumLabel.getText().split(" ")[1]);    // create and show your Swing JFrame
+        System.out.println("Continue clicked with selected card!");
+        Label roomNumLabel = (Label) ((VBox) selectedCard.getChildren().get(0)).getChildren().getFirst();
+        String roomNum = roomNumLabel.getText().split(" ")[1];
+        bs.setRoom(roomNum);
+        SwingUtilities.invokeLater(() -> {
+            new ServicesInfo();    // create and show your Swing JFrame
         });
 
         // 2) Close the JavaFX window (optional)
         // Stage fxStage = (Stage) continueButton.getScene().getWindow();
         // fxStage.close();
   }
-
 }

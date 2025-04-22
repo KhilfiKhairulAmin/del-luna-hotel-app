@@ -1,0 +1,38 @@
+[
+  {
+    "serviceId": "1",
+    "serviceName": "Spa",
+    "description": "Relax with our full-body spa treatments.",
+    "pricePerStay": 50.0
+  },
+  {
+    "serviceId": "2",
+    "serviceName": "Couple Decorations",
+    "description": "Romantic couple decorations for your room.",
+    "pricePerStay": 30.0
+  },
+  {
+    "serviceId": "3",
+    "serviceName": "Gymnasium",
+    "description": "Access to our state-of-the-art gym.",
+    "pricePerStay": 10.0
+  },
+  {
+    "serviceId": "4",
+    "serviceName": "Minibar",
+    "description": "Enjoy a fully stocked minibar.",
+    "pricePerStay": 20.0
+  },
+  {
+    "serviceId": "5",
+    "serviceName": "Laundry",
+    "description": "Laundry service for your convenience.",
+    "pricePerStay": 15.0
+  },
+  {
+    "serviceId": "6",
+    "serviceName": "Transportations",
+    "description": "Luxury transport services.",
+    "pricePerStay": 40.0
+  }
+]

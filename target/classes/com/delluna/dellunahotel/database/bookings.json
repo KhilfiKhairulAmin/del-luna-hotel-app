@@ -6,7 +6,11 @@
     "serviceIds": [],
     "checkInDate": "",
     "checkOutDate": "",
-    "invoiceId": "",
+    "totalRoomCost": 0.0,
+    "totalServiceCost": 0.0,
+    "taxAmount": 0.0,
+    "discountAmount": 0.0,
+    "grandTotal": 0.0,
     "pointsObtained": 0
   }
 ]

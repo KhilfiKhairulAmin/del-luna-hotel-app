@@ -3,15 +3,10 @@ package com.delluna.dellunahotel.controllers;
 // Import necessary Swing and AWT components
 import javax.swing.*;
 
-import com.delluna.dellunahotel.utils.LoaderFX;
-
-import javafx.application.Platform;
-import javafx.stage.Stage;
-
+import com.delluna.dellunahotel.services.BookingSingleton;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.net.URL;
 import java.util.ArrayList;
 
 // Main class for the hotel booking service GUI
@@ -24,6 +19,7 @@ public class HotelBooking2
     private JTextArea selectedServicesArea;       // Displays selected services
     private ArrayList<String> selectedServices;   // Stores list of selected services
     private JCheckBox[] checkBoxes;               // Stores checkboxes for services
+
 
     // Static list of services offered
     private static final String[] services = 
@@ -43,8 +39,9 @@ public class HotelBooking2
     };
 
     // Constructor to initialize the GUI
-    public HotelBooking2(String roomNum) 
+    public HotelBooking2() 
     {
+
         selectedServices = new ArrayList<>();               // Initialize selected services list
         checkBoxes = new JCheckBox[services.length];        // Allocate space for checkboxes
 
@@ -124,50 +121,55 @@ public class HotelBooking2
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(203, 214, 248));
 
-        JButton updateButton = new JButton("Update");
-        JButton nextButton = new JButton("Proceed Payment");
+        JButton nextButton = new JButton("Save");
         JButton recommendButton = new JButton("Recommend Me!");
 
         Color buttonColor = new Color(213, 172, 209); // Soft purple
 
-        updateButton.setBackground(buttonColor);
         nextButton.setBackground(buttonColor);
         recommendButton.setBackground(buttonColor);
 
-        // Update button shows selected services
-        updateButton.addActionListener(e -> 
-        {
-            updateSelectedServices();
-            if (selectedServices.isEmpty()) 
-            {
-                JOptionPane.showMessageDialog(frame, "No services selected.");
-            } 
-            else 
-            {
-                StringBuilder message = new StringBuilder("You have selected the following services:\n");
-                for (String service : selectedServices) {
-                    message.append("- ").append(service).append("\n");
-                }
-                JOptionPane.showMessageDialog(frame, message.toString(), "Selected Services", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
         // "Next" button simulation
         nextButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Proceeding to Next Step...");
-            // Swing Side
-        String username = "user123";
-        Platform.runLater(() -> {
-            new FXWindow(username).start(new Stage());
-        });
+            String servicesIdRaw = "";
+            for (String service: selectedServices) {
+                switch (service) 
+                {
+                    case "Spa":
+                        servicesIdRaw += "1";
+                        break;
+                    case "Couple Decorations":
+                        servicesIdRaw += "2";
+                        break;
+                    case "Gymnasium":
+                        servicesIdRaw += "3";
+                        break;
+                    case "Minibar":
+                        servicesIdRaw += "4";
+                        break;
+                    case "Laundry":
+                        servicesIdRaw += "5";
+                        break;
+                    case "Transportations":
+                        servicesIdRaw += "6";
+                        break;
+                    default:
+                        servicesIdRaw += "";
+                        break;
+                }
+                servicesIdRaw += " ";
+            }
 
+            String[] serviceIds = servicesIdRaw.trim().split(" ");
+
+            BookingSingleton bs = BookingSingleton.getInstance();
+            bs.setServiceIds(serviceIds);
+            frame.dispose();
         });
 
         // Recommendation quiz
         recommendButton.addActionListener(e -> showServiceRecommendationQuiz());
 
-        // Add buttons to panel
-        buttonPanel.add(updateButton);
         buttonPanel.add(nextButton);
         buttonPanel.add(recommendButton);
 
@@ -302,6 +304,7 @@ public class HotelBooking2
                 {
                     if (services[i].equals(service)) {
                         checkBoxes[i].setSelected(true);
+                        addService(service);
                     }
                 }
             }
@@ -314,11 +317,5 @@ public class HotelBooking2
     {
         int result = JOptionPane.showConfirmDialog(frame, question, "Service Quiz", JOptionPane.YES_NO_OPTION);
         return result == JOptionPane.YES_OPTION;
-    }
-
-    // Main method to start the program
-    public static void main(String[] args) 
-    {
-        SwingUtilities.invokeLater(HotelBooking2::new); // Run GUI in event-dispatch thread
     }
 }

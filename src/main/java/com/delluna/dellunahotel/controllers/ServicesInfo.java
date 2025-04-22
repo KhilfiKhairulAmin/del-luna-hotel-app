@@ -1,22 +1,20 @@
 package com.delluna.dellunahotel.controllers;
 
 import javax.swing.*; // for JFrame, JPanel, JButton, JLabel
+
+import com.delluna.dellunahotel.services.BookingSingleton;
+
 import java.awt.*; // for layouts, colours, fonts
 
 public class ServicesInfo 
 {
-    private String roomNum;
-
-    public ServicesInfo(String roomNum) {
-        this.roomNum = roomNum;
-    }
     
-    public static void main(String[] args) 
+    public ServicesInfo()
     {
     	// create main application window (frame)
         JFrame frame = new JFrame("Services Provided:");
         frame.setSize(750, 700); 								// set window size
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // close the program when window is closed
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // close the program when window is closed
         frame.setLocationRelativeTo(null);						// centre the window
 
         // main panel with BorderLayout (North, Center, South parts)
@@ -179,11 +177,15 @@ public class ServicesInfo
         bookBtn.addActionListener(e -> 
         {
             frame.dispose(); // Close the current frame
-            SwingUtilities.invokeLater(() -> new HotelBooking2(roomNum)); // Open the HotelBooking2 window
+            SwingUtilities.invokeLater(() -> new HotelBooking2()); // Open the HotelBooking2 window
         });
 
         // When "Skip" is clicked
-        skipBtn.addActionListener(e -> JOptionPane.showMessageDialog(null, "Skipped service booking."));
+        skipBtn.addActionListener(e -> {
+            BookingSingleton bs = BookingSingleton.getInstance();
+            bs.setServiceIds(null);
+            frame.dispose();
+        });
     }
 }
 

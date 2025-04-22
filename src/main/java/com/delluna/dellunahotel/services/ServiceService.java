@@ -43,7 +43,7 @@ public class ServiceService {
     // Create
     public Service createService(Service service) {
         if (getServiceById(service.serviceId) != null) {
-            return null;
+            return null; // ID already exists
         }
         services.add(service);
         saveServices();
