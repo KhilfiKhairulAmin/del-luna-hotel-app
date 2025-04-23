@@ -12,5 +12,18 @@
     "discountAmount": 0.0,
     "grandTotal": 0.0,
     "pointsObtained": 0
+  },
+  {
+    "bookingId": "2",
+    "guestId": "1",
+    "roomNum": "101",
+    "checkInDate": "2025-04-16",
+    "checkOutDate": "2025-04-18",
+    "totalRoomCost": 180.0,
+    "totalServiceCost": 0.0,
+    "taxAmount": 0.0,
+    "discountAmount": 0.0,
+    "grandTotal": 180.0,
+    "pointsObtained": 0
   }
 ]

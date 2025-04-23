@@ -1,0 +1,67 @@
+/* homepage.css */
+
+/* ScrollPane styling */
+.scroll-pane {
+  -fx-background-color: transparent;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  -fx-background-color: #f0f0f0;
+  -fx-border-color: #e0e0e0;
+  -fx-border-width: 1px;
+}
+
+/* Content sections */
+.content-section {
+  -fx-padding: 40 0;
+}
+
+.section-title {
+  -fx-font-family: 'Playfair Display';
+  -fx-font-size: 32px;
+  -fx-text-fill: #2d3436;
+  -fx-text-alignment: center;
+  -fx-padding: 0 0 20px 0;
+}
+
+.content-card {
+  -fx-background-color: white;
+  -fx-background-radius: 8px;
+  -fx-padding: 25;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+  -fx-spacing: 15;
+}
+
+.cta-section {
+  -fx-background-color: #f8f9fa;
+  -fx-padding: 60 0;
+}
+
+/* Hero section adjustments */
+.hero-container {
+  -fx-background-color: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+}
+
+.hero-title {
+  -fx-font-size: 42px;
+  -fx-text-fill: #2d3436;
+}
+
+.hero-subtitle {
+  -fx-font-size: 22px;
+  -fx-text-fill: #636e72;
+}
+
+/* Button styling */
+.cta-button {
+  -fx-font-size: 20px;
+  -fx-padding: 12 40;
+  -fx-background-color: #e74c3c;
+  -fx-text-fill: white;
+  -fx-background-radius: 25px;
+}
+
+.cta-button:hover {
+  -fx-background-color: #c0392b;
+}

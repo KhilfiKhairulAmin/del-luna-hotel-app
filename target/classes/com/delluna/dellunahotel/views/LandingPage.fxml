@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextAlignment?>
+
+<ScrollPane fx:id="scrollPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fitToWidth="true"
+            fx:controller="com.delluna.dellunahotel.controllers.LandingPageController"
+            stylesheets="@../styles/homepage.css">
+    
+    <content>
+        <StackPane>
+            <VBox alignment="TOP_CENTER" spacing="40" maxWidth="1192" minWidth="1192">
+                <!-- Hero Section -->
+                <StackPane styleClass="hero-container">
+                    <ImageView fitWidth="1192" fitHeight="500" preserveRatio="false" styleClass="image-placeholder">
+                        <image>
+                            <Image url="@../images/HotelDelLuna.png" />
+                        </image>
+                    </ImageView>
+                    <VBox alignment="CENTER" spacing="15">
+                        <Label text="Experience Timeless Luxury" styleClass="hero-title" />
+                        <Label text="A Heritage Hotel Reimagined" styleClass="hero-subtitle" />
+                    </VBox>
+                </StackPane>
+
+                <!-- Welcome Section -->
+                <VBox alignment="TOP_CENTER" spacing="30" styleClass="content-section">
+                    <Label text="Welcome to Hotel Del Luna Subang Jaya" styleClass="section-title" />
+                    
+                    <HBox spacing="40" alignment="TOP_CENTER">
+                        <VBox spacing="15" styleClass="content-card" maxWidth="550">
+                            <Label text="Historic Elegance" styleClass="card-title" />
+                            <Label text="Our original Del Luna residence, a beautifully preserved landmark now recognized as a local heritage site, offers a unique blend of historic charm and modern luxury." 
+                                   wrapText="true" styleClass="paragraph" />
+                            <ImageView fitWidth="550" fitHeight="300" preserveRatio="true" styleClass="image-placeholder" />
+                        </VBox>
+                        
+                        <VBox spacing="15" styleClass="content-card" maxWidth="550">
+                            <Label text="Modern Comfort" styleClass="card-title" />
+                            <Label text="As part of the Autograph Collection, we combine historic architecture with contemporary amenities to create an unforgettable stay experience." 
+                                   wrapText="true" styleClass="paragraph" />
+                            <ImageView fitWidth="550" fitHeight="300" preserveRatio="true" styleClass="image-placeholder" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Facilities Gallery -->
+                <VBox alignment="TOP_CENTER" spacing="30" styleClass="content-section">
+                    <Label text="Our Facilities" styleClass="section-title" />
+                    <HBox spacing="20" alignment="CENTER">
+                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
+                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
+                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
+                    </HBox>
+                </VBox>
+
+                <!-- CTA Section -->
+                <VBox alignment="CENTER" spacing="30" styleClass="cta-section">
+                    <Label text="Ready for Your Stay?" styleClass="section-title" />
+                    <Button text="Book Now" styleClass="cta-button" onAction="#onBookNow" />
+                </VBox>
+                
+                <!-- Footer -->
+                <VBox alignment="CENTER" spacing="10" styleClass="footer">
+                    <Label text="© 2025 Hotel Del Luna Subang Jaya" styleClass="footer-text" />
+                    <Label text="Jalan SS12/1, 47500 Subang Jaya, Selangor, Malaysia" styleClass="footer-text" />
+                </VBox>
+            </VBox>
+        </StackPane>
+    </content>
+</ScrollPane>

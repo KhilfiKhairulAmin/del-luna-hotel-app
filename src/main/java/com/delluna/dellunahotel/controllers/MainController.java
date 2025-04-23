@@ -89,18 +89,18 @@ public class MainController {
 
     
     public void initialize() {
-        sidebarCache.put(Sidebar.HOME, "home.fxml");
+        sidebarCache.put(Sidebar.HOME, "LandingPage.fxml");
         sidebarCache.put(Sidebar.EXPLORE, "SelectingRooms2.fxml");
         sidebarCache.put(Sidebar.ACCOUNT, "account.fxml");
 
     	ViewManager.setMainPane(mainPane);
     	
         // Load the sidebar logo
-        Image image = LoaderFX.getImage("icon.jpg");
+        Image image = LoaderFX.getImage("icon.png");
         appLogoContainer.setFill(new ImagePattern(image));
         
         selectedPane = homeStack;
-        changeView("home.fxml", Sidebar.HOME); // Load home view by default
+        changeView("LandingPage.fxml", Sidebar.HOME); // Load home view by default
         selectedPane.setStyle("-fx-background-color: #d5acd1;");
         
         int count = 0, except1 = 1, except2 = 6;

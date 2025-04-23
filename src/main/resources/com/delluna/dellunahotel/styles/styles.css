@@ -1,6 +1,6 @@
 /* Root and Background */
 .root {
-    -fx-font-family: "Segoe UI", Arial;
+    -fx-font-family: "Segoe UI";
     -fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
     -fx-background-color: transparent;
     -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0, 0);
@@ -99,20 +99,24 @@
     -fx-background-color: #6e62aa;
     -fx-z-index: 1000;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-background-radius: 0 15 15 0; /* top-right and bottom-right corners */
+    -fx-padding: 10;
 }
 
 .sidebar-component {
     -fx-background-color: transparent;
     -fx-padding: 15 25;
-    /* -fx-font-size: 14px; */
     -fx-text-fill: white;
+    -fx-background-radius: 10; /* prepare for hover effect */
     -fx-transition: all 0.3s;
+    -fx-margin: 10;
 }
 
 .sidebar-component:hover {
-    -fx-background-color: rgba(255,255,255,0.1);
-    -fx-translate-x: 5;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 10;
 }
+
 
 /* Rounded Image */
 .rounded-image {
@@ -253,4 +257,76 @@
 /* Remove borders from original design */
 .card .label {
     -fx-border-width: 0;
+}
+
+/* Icon styling */
+.icon-container {
+    -fx-padding: 0 0 0 10px;
+    -fx-alignment: center-left;
+}
+
+.icon-container ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 0, 0, 0, 1);
+}
+
+/* Hover effects */
+.sidebar-component:hover ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 5, 0.5, 0, 0);
+}
+
+/* Active state */
+.sidebar-component:active ImageView {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.4), 5, 0.5, 0, 1);
+}
+
+.nav-logo {
+    -fx-font-family: 'Georgia';
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.nav-button {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-padding: 5 15;
+}
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-cursor: hand;
+}
+
+/* Main title */
+.main-title {
+    -fx-font-family: 'Serif';
+    -fx-font-size: 36px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Paragraph text */
+.paragraph {
+    -fx-font-family: 'Serif';
+    -fx-font-size: 18px;
+    -fx-text-fill: #ecf0f1;
+}
+
+/* Call-to-action button */
+.cta-button {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 30;
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+.cta-button:hover {
+    -fx-background-color: #c0392b;
+    -fx-cursor: hand;
+}
+
+/* Footer */
+.footer-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #bdc3c7;
 }

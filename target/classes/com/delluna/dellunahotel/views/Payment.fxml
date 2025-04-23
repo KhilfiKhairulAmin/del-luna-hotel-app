@@ -69,8 +69,3 @@
         </HBox>
     </bottom>
 </BorderPane>
- prefWidth="120"/>
-ckground-color: #4CAF50; -fx-text-fill: white;" prefWidth="120"/>
-        </HBox>
-    </bottom>
-</BorderPane>
