@@ -7,12 +7,9 @@ import com.delluna.dellunahotel.utils.LoaderFX;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,6 +21,7 @@ public class RoomCardController {
     @FXML
     private ImageView roomImage;
 
+
     private RoomType roomType;
 
     public void setData(RoomType roomType) {
@@ -34,9 +32,10 @@ public class RoomCardController {
         for (String word: words) {
           words[i++] = Character.toUpperCase(word.charAt(0)) + word.substring(1);
         }
-
-        roomLabel.setText(String.join(" ", words));
+        String out = String.join(" ", words);
+        roomLabel.setText(out);
         roomImage.setImage(LoaderFX.getImage("rooms/" + name + ".png"));
+
     }
 
     @FXML

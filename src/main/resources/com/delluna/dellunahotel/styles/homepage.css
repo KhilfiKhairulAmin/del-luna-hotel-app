@@ -1,5 +1,12 @@
 /* homepage.css */
 
+.root {
+  -fx-font-family: 'Roboto', sans-serif;
+  -fx-base: #ffffff;
+  -fx-background-color: #f8f9fa;
+  -fx-padding: 20;
+}
+
 /* ScrollPane styling */
 .scroll-pane {
   -fx-background-color: transparent;
@@ -18,17 +25,32 @@
 }
 
 .section-title {
-  -fx-font-family: 'Playfair Display';
-  -fx-font-size: 32px;
-  -fx-text-fill: #2d3436;
+  -fx-font-family: 'Blackadder ITC', sans-serif;
+  -fx-font-size: 44px;
+  -fx-text-fill: #6e26aa;
   -fx-text-alignment: center;
   -fx-padding: 0 0 20px 0;
 }
 
+.section-header {
+  font-family: 'Blackadder ITC', sans-serif;
+  -fx-font-size: 48px;
+  -fx-text-fill: #6e26aa;
+  -fx-text-alignment: center;
+  -fx-padding: 0 0 20px 0;
+}
+
+.paragraph {
+  -fx-font-size: 18px;
+  -fx-text-fill: #636e72;
+  -fx-padding: 10;
+  -fx-line-spacing: 1.5;
+}
+
 .content-card {
-  -fx-background-color: white;
+  -fx-background-color: #cbdbf8;
   -fx-background-radius: 8px;
-  -fx-padding: 25;
+  -fx-padding: 10;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
   -fx-spacing: 15;
 }
@@ -57,11 +79,11 @@
 .cta-button {
   -fx-font-size: 20px;
   -fx-padding: 12 40;
-  -fx-background-color: #e74c3c;
+  -fx-background-color: #d5acd1;
   -fx-text-fill: white;
   -fx-background-radius: 25px;
 }
 
 .cta-button:hover {
-  -fx-background-color: #c0392b;
+  -fx-background-color: #975a91;
 }

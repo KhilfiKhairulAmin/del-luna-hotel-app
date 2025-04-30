@@ -38,9 +38,6 @@
             
             <Label style="-fx-text-fill: #666;" text="Gender:" />
             <TextField fx:id="displayGenderField" disable="true" editable="false" promptText="Gender" />
-            
-            <Label style="-fx-text-fill: #666;" text="Tag:" />
-            <TextField fx:id="tagField" promptText="Enter your tag" />
         </VBox>
       <Label fx:id="errorMsg" style="-fx-text-fill: red;" />
     </VBox>

@@ -265,52 +265,52 @@ public class HotelBooking2
         descriptionLabel.setText(description); // Update description label
     }
 
-    // Shows a quiz dialog and recommends services based on user answers
-    private void showServiceRecommendationQuiz() 
+// Shows a quiz dialog and recommends services based on user answers
+private void showServiceRecommendationQuiz() 
+{
+    ArrayList<String> recommended = new ArrayList<>();
+
+    // Simple yes/no questions
+    if (askYesNo("Do you want to relax?")) {
+        recommended.add("Spa");
+    }
+    if (askYesNo("Are you here with a partner?")) {
+        recommended.add("Couple Decorations");
+    }
+    if (askYesNo("Do you enjoy working out?")) {
+        recommended.add("Gymnasium");
+    }
+    if (askYesNo("Do you prefer cold drinks and snacks?")) {
+        recommended.add("Minibar");
+    }
+    if (askYesNo("Do you hate doing laundry while on a trip?")) {
+        recommended.add("Laundry");
+    }
+    if (askYesNo("Do you plan to travel around town?")) {
+        recommended.add("Transportations");
+    }
+
+    // Show recommendation result
+    if (recommended.isEmpty()) {
+        JOptionPane.showMessageDialog(frame, "No recommendations based on your answers.");
+    } 
+    else 
     {
-        ArrayList<String> recommended = new ArrayList<>();
-
-        // Simple yes/no questions
-        if (askYesNo("Do you want to relax?")) {
-            recommended.add("Spa");
-        }
-        if (askYesNo("Are you here with a partner?")) {
-            recommended.add("Couple Decorations");
-        }
-        if (askYesNo("Do you enjoy working out?")) {
-            recommended.add("Gymnasium");
-        }
-        if (askYesNo("Do you prefer cold drinks and snacks?")) {
-            recommended.add("Minibar");
-        }
-        if (askYesNo("Do you hate doing laundry while on a trip?")) {
-            recommended.add("Laundry");
-        }
-        if (askYesNo("Do you plan to travel around town?")) {
-            recommended.add("Transportations");
-        }
-
-        // Show recommendation result
-        if (recommended.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "No recommendations based on your answers.");
-        } 
-        else 
-        {
-            StringBuilder message = new StringBuilder("Based on your answers, we recommend:\n");
-            for (String service : recommended) {
-                message.append("- ").append(service).append("\n");
-                // Automatically check recommended services
-                for (int i = 0; i < services.length; i++) 
-                {
-                    if (services[i].equals(service)) {
-                        checkBoxes[i].setSelected(true);
-                        addService(service);
-                    }
+        StringBuilder message = new StringBuilder("Based on your answers, we recommend:\n");
+        for (String service : recommended) {
+            message.append("- ").append(service).append("\n");
+            // Automatically check recommended services
+            for (int i = 0; i < services.length; i++) 
+            {
+                if (services[i].equals(service)) {
+                    checkBoxes[i].setSelected(true);
+                    addService(service);
                 }
             }
-            JOptionPane.showMessageDialog(frame, message.toString());
         }
+        JOptionPane.showMessageDialog(frame, message.toString());
     }
+}
 
     // Helper to ask yes/no questions using JOptionPane
     private boolean askYesNo(String question) 

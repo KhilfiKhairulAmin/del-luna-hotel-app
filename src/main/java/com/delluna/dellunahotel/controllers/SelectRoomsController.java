@@ -9,7 +9,6 @@ import com.delluna.dellunahotel.services.BookingSingleton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -22,9 +21,8 @@ import javafx.scene.paint.Color;
 public class SelectRoomsController implements BookingListener {
   @FXML private GridPane roomGrid;
   @FXML private Button continueButton; // Ensure it's in your FXML
+  @FXML private Button cancelButton; // Ensure it's in your FXML
   private int roomCount = 0;
-  private int count = 0;
-
   private StackPane selectedCard = null;
 
   @FXML
@@ -35,11 +33,11 @@ public class SelectRoomsController implements BookingListener {
   @Override
   public void onBookingChanged(Booking booking) {
       Platform.runLater(() -> {
-          count++;
-          if (count < 2) {
-            return;
-          }
-          MainController.getInstance().changeView("Payment.fxml", Sidebar.EXPLORE);
+        if (booking.serviceIds != null) {
+            continueButton.setDisable(false);
+            cancelButton.setDisable(false);
+            MainController.getInstance().changeView("Payment.fxml", Sidebar.EXPLORE);
+        }
       });
   }
 
@@ -106,9 +104,12 @@ public class SelectRoomsController implements BookingListener {
         SwingUtilities.invokeLater(() -> {
             new ServicesInfo();    // create and show your Swing JFrame
         });
+  }
 
-        // 2) Close the JavaFX window (optional)
-        // Stage fxStage = (Stage) continueButton.getScene().getWindow();
-        // fxStage.close();
+  @FXML
+  private void handleCancel() {
+    MainController.getInstance().resetCache("SelectRoomss.fxml");
+    MainController.getInstance().resetCache("checkingAvailability.fxml");
+    MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
   }
 }

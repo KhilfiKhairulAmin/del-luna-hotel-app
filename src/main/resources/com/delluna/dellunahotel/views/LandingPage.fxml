@@ -1,78 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextAlignment?>
 
-<ScrollPane fx:id="scrollPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fitToWidth="true"
-            fx:controller="com.delluna.dellunahotel.controllers.LandingPageController"
-            stylesheets="@../styles/homepage.css">
+<ScrollPane fx:id="scrollPane" fitToWidth="true" stylesheets="@../styles/homepage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.LandingPageController">
     
     <content>
         <StackPane>
-            <VBox alignment="TOP_CENTER" spacing="40" maxWidth="1192" minWidth="1192">
+            <VBox alignment="TOP_CENTER" maxWidth="1192" minWidth="1192" spacing="40">
                 <!-- Hero Section -->
                 <StackPane styleClass="hero-container">
-                    <ImageView fitWidth="1192" fitHeight="500" preserveRatio="false" styleClass="image-placeholder">
+                    <ImageView fitHeight="500" fitWidth="1192" preserveRatio="false" styleClass="image-placeholder">
                         <image>
                             <Image url="@../images/HotelDelLuna.png" />
                         </image>
                     </ImageView>
-                    <VBox alignment="CENTER" spacing="15">
-                        <Label text="Experience Timeless Luxury" styleClass="hero-title" />
-                        <Label text="A Heritage Hotel Reimagined" styleClass="hero-subtitle" />
-                    </VBox>
                 </StackPane>
 
                 <!-- Welcome Section -->
                 <VBox alignment="TOP_CENTER" spacing="30" styleClass="content-section">
-                    <Label text="Welcome to Hotel Del Luna Subang Jaya" styleClass="section-title" />
-                    
-                    <HBox spacing="40" alignment="TOP_CENTER">
-                        <VBox spacing="15" styleClass="content-card" maxWidth="550">
-                            <Label text="Historic Elegance" styleClass="card-title" />
-                            <Label text="Our original Del Luna residence, a beautifully preserved landmark now recognized as a local heritage site, offers a unique blend of historic charm and modern luxury." 
-                                   wrapText="true" styleClass="paragraph" />
-                            <ImageView fitWidth="550" fitHeight="300" preserveRatio="true" styleClass="image-placeholder" />
+                    <Label styleClass="section-header" text="Welcome to Del Luna Hotel Subang Jaya!">
+                  <font>
+                     <Font name="Berlin Sans FB" size="21.0" />
+                  </font></Label>
+               <Separator prefWidth="200.0" />
+                    <Label styleClass="section-title" text="About Us" />
+                    <HBox alignment="TOP_CENTER" spacing="40">
+                        <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Historic Elegance" />
+                            <Label styleClass="paragraph" text="Our original Del Luna residence, a beautifully preserved landmark now recognized as a local heritage site, offers a unique blend of historic charm and modern luxury." wrapText="true" />
+                            <ImageView fitHeight="300" fitWidth="550" preserveRatio="true" styleClass="image-placeholder" />
                         </VBox>
                         
-                        <VBox spacing="15" styleClass="content-card" maxWidth="550">
-                            <Label text="Modern Comfort" styleClass="card-title" />
-                            <Label text="As part of the Autograph Collection, we combine historic architecture with contemporary amenities to create an unforgettable stay experience." 
-                                   wrapText="true" styleClass="paragraph" />
-                            <ImageView fitWidth="550" fitHeight="300" preserveRatio="true" styleClass="image-placeholder" />
+                        <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Modern Comfort" />
+                            <Label styleClass="paragraph" text="As part of the Autograph Collection, we combine historic architecture with contemporary amenities to create an unforgettable stay experience." wrapText="true" />
+                            <ImageView fitHeight="300" fitWidth="550" preserveRatio="true" styleClass="image-placeholder" />
                         </VBox>
+                  <padding>
+                     <Insets left="20.0" right="20.0" />
+                  </padding>
                     </HBox>
                 </VBox>
 
                 <!-- Facilities Gallery -->
                 <VBox alignment="TOP_CENTER" spacing="30" styleClass="content-section">
-                    <Label text="Our Facilities" styleClass="section-title" />
-                    <HBox spacing="20" alignment="CENTER">
-                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
-                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
-                        <ImageView fitWidth="380" fitHeight="250" styleClass="image-placeholder" />
+                    <Label styleClass="section-title" text="Our Facilities" />
+                    <HBox alignment="CENTER" spacing="20">
+                    <VBox alignment="CENTER" spacing="20">
+                                        <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Gym" />
+                    </VBox>
+                    <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Spa" />
+                    </VBox>
+                    <VBox maxWidth="550" spacing="15" styleClass="content-card">
+
+                            <Label styleClass="card-title" text="Minibar" />
+                    </VBox>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="20">
+                                        <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Couple Decorations" />
+                    </VBox>
+                    <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Laundry" />
+                    </VBox>
+                    <VBox maxWidth="550" spacing="15" styleClass="content-card">
+                            <Label styleClass="card-title" text="Transportation" />
+                    </VBox>
+                    </VBox>
+
+
                     </HBox>
                 </VBox>
 
                 <!-- CTA Section -->
-                <VBox alignment="CENTER" spacing="30" styleClass="cta-section">
-                    <Label text="Ready for Your Stay?" styleClass="section-title" />
-                    <Button text="Book Now" styleClass="cta-button" onAction="#onBookNow" />
+                <VBox alignment="CENTER" spacing="30" style="-fx-background-color: #cbdcf8;" styleClass="cta-section">
+                    <Label styleClass="section-title" text="Ready for Your Stay?" />
+                    <Button onAction="#onBookNow" styleClass="cta-button" text="Book Now" />
                 </VBox>
                 
                 <!-- Footer -->
                 <VBox alignment="CENTER" spacing="10" styleClass="footer">
-                    <Label text="© 2025 Hotel Del Luna Subang Jaya" styleClass="footer-text" />
-                    <Label text="Jalan SS12/1, 47500 Subang Jaya, Selangor, Malaysia" styleClass="footer-text" />
+                    <Label styleClass="footer-text" text="© 2025 Hotel Del Luna Subang Jaya" />
+                    <Label styleClass="footer-text" text="Jalan SS12/1, 47500 Subang Jaya, Selangor, Malaysia" />
                 </VBox>
             </VBox>
         </StackPane>

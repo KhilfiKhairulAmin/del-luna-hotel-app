@@ -183,7 +183,8 @@ public class ServicesInfo
         // When "Skip" is clicked
         skipBtn.addActionListener(e -> {
             BookingSingleton bs = BookingSingleton.getInstance();
-            bs.setServiceIds(null);
+            String[] emptyArray = new String[0]; // Empty array for no services booked
+            bs.setServiceIds(emptyArray);
             frame.dispose();
         });
     }

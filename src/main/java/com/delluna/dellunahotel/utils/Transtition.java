@@ -2,10 +2,7 @@ package com.delluna.dellunahotel.utils;
 
 import java.io.IOException;
 
-import com.delluna.dellunahotel.controllers.MainController;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;

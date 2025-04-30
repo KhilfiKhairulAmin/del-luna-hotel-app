@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.delluna.dellunahotel.controllers.BookingListController"
+      spacing="10" stylesheets="@../styles/booking_list.css" styleClass="root-pane">
+
+    <TableView fx:id="bookingTable" VBox.vgrow="ALWAYS" styleClass="booking-table">
+        <columns>
+            <TableColumn fx:id="colBookingId" text="Booking ID" prefWidth="120"/>
+            <TableColumn fx:id="colCheckIn" text="Check-In Date" prefWidth="150"/>
+            <TableColumn fx:id="colCheckOut" text="Check-Out Date" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+</VBox>

@@ -3,12 +3,22 @@ package com.delluna.dellunahotel.controllers;
 import javafx.event.ActionEvent;  // Event handling package
 
 import javafx.fxml.FXML; 		  // FXML handling packages
-import javafx.scene.control.*;	  // UI components package
+import javafx.fxml.FXMLLoader;
 
-import com.delluna.dellunahotel.services.GuestService;
-import com.delluna.dellunahotel.utils.AlertBox;
-import com.delluna.dellunahotel.utils.Transtition;
-import com.delluna.dellunahotel.utils.UI;
+import javafx.scene.control.*;	  // UI components package
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.Node;		  // Scene management packages
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import com.delluna.dellunahotel.services.GuestService; // Guest service package
+import com.delluna.dellunahotel.utils.LoaderFX;
+
+import java.io.IOException;		  // Error handling package
+
+import java.util.regex.Pattern;   // Input validation package
 
 
 public class SignInController {
@@ -22,66 +32,120 @@ public class SignInController {
     @FXML private Label emailError;
     @FXML private Label passwordError;
 
-    @FXML Button signInButton;
+    @FXML private Rectangle signInImageContainer;
+    
+    // Input validation
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
+    
+    GuestService GuestManager = new GuestService(); // Service to manage guest data
+
+    @FXML public void initialize() {
+        Image image = LoaderFX.getImage("pattern.jpg");
+        signInImageContainer.setFill(new ImagePattern(image));
+    }
+
+/**
+ * Handle Sign In button click event
+ * @param event
+ */
+@FXML private void handleSignIn(ActionEvent event) {
+    
+    clearErrors();
+    
+    boolean isValid = true;
+    
+    if (emailField.getText().isEmpty()) {
+        emailError.setText("Email is required");
+        isValid = false;
+    }
+    else if (!EMAIL_PATTERN.matcher(emailField.getText()).matches()) {
+        emailError.setText("Invalid email format");
+        isValid = false;
+    }
+    
+    if (passwordField.getText().isEmpty()) {
+        passwordError.setText("Password is required");
+        isValid = false;
+    }
+    
+    if (isValid) {
+        try {
+            boolean isValidGuest = GuestManager.verifyLogin(emailField.getText(), passwordField.getText());
+            
+            if (isValidGuest) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
+                loadHomePage(event);
+            }
+            else showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
+            
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to create account: " + e.getMessage());
+        }
+    }
+}
+    
+    /**
+     * Reset error fields to default text
+     */
+    private void clearErrors() {
+        emailError.setText("");
+        passwordError.setText("");
+    }
 
     /**
-     * Handle Sign In button click event
+     * Handle Sign Up link click event
      * @param event
      */
-    @FXML private void handleSignIn(ActionEvent event) {
-
-        UI.clearErrors(emailError, passwordError);
-
-        GuestService guestService = new GuestService();
-
-        try {
-            guestService.authenticate(emailField.getText(), passwordField.getText());
-        } catch (RuntimeException e) {
-            AlertBox.error("Error", "Invalid credentials");
-        }
-        loadHomePage(event);
-
-        // ApiClient.<Guest2, ResponseBody>loginService("http://localhost:4567/guest/sign_in", g, ResponseBody.class)
-        //     .valueProperty()
-        //     .addListener((obs, oldVal, newVal) -> {
-        //         if (newVal != null) {
-        //             System.out.println(newVal.isSuccess);
-        //             if (newVal.isSuccess) {
-        //                 UI.showAlert(Alert.AlertType.INFORMATION, "Success", "Logged in successfully!");
-        //                 loadHomePage(event);
-        //             } else {
-        //                 String prop;
-
-        //                 if (newVal.properties.size() == 0) {
-        //                     UI.showAlert(Alert.AlertType.ERROR, "Error", "Invalid credentials");
-        //                     return;
-        //                 }
-
-        //                 // Check email
-        //                 prop = newVal.getProperty("email");
-        //                 if (prop != null) {
-        //                     emailError.setText(prop);
-        //                 }
-
-        //                 // Check password
-        //                 prop = newVal.getProperty("password");
-        //                 if (prop != null) {
-        //                     passwordError.setText(prop);
-        //                 }
-        //             }
-        //         }
-        //     });
-    }
-
     @FXML private void switchToSignUp(ActionEvent event) {
-        Transtition.switchPage(event, "SignUp.fxml");
+        try {
+            Parent root = FXMLLoader.load(LoaderFX.getFXML("SignUp.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1366, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
+    
+    /**
+     * Handle Forgot Password link click event
+     * @param event
+     */
     @FXML private void switchToForgotPassword(ActionEvent event) {
-        Transtition.switchPage(event, "ForgotPassword.fxml");
+        try {
+            Parent root = FXMLLoader.load(LoaderFX.getFXML("ForgotPassword.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1366, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Transition to Homepage
+     * @param event
+     * @throws IOException
+     */
     private void loadHomePage(ActionEvent event) {
-        Transtition.switchPage(event, "Main.fxml");
+        try {
+            Parent root = FXMLLoader.load(LoaderFX.getFXML("Main.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1366, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Show a pop up box to alert the user
+     * @param alertType
+     * @param title Title of the pop up window
+     * @param message Message of the pop up window
+     */
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

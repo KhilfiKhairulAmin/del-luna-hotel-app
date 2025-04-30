@@ -20,7 +20,6 @@ import com.delluna.dellunahotel.models.Room;
 import com.delluna.dellunahotel.models.RoomType;
 import com.delluna.dellunahotel.services.BookingService;
 import com.delluna.dellunahotel.services.BookingSingleton;
-import com.delluna.dellunahotel.services.RoomService;
 import com.delluna.dellunahotel.utils.AlertBox;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
@@ -31,6 +30,7 @@ import java.util.Locale; //to get month names in correct locale
 import java.time.DayOfWeek;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -106,37 +106,73 @@ public class CheckAvailabilityController implements Initializable{
 		this.roomType = roomType;
 	}
 
-	@FXML private void handleCheck() {
-		String startDate = startDateLabel.getText();
-		String endDate = endDateLabel.getText();
+@FXML private void handleCheck() {
+	boolean valid = true;
 
-		BookingService bookingService = new BookingService();
-		List<Room> availRooms = bookingService.getAvailableRoomsByTypeAndDate(roomType.typeId, startDate, endDate);
-		String out = "";
-		for (Room r: availRooms) {
-			out += r + "\n";
+String startDateStr = startDateLabel.getText();
+String endDateStr = endDateLabel.getText();
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // adjust this if needed
+
+try {
+		if (startDateStr != null && !startDateStr.isEmpty() && endDateStr != null && !endDateStr.isEmpty()) {
+				LocalDate today = LocalDate.now();
+				LocalDate startDate = LocalDate.parse(startDateStr, formatter);
+				LocalDate endDate = LocalDate.parse(endDateStr, formatter);
+
+				// Check if startDate is at least 1 day after today
+				if (!startDate.isAfter(today)) {
+					AlertBox.error("Invalid Dates", "Please select a date after today");
+					return;
+				}
+
+				// Check if startDate is not after endDate
+				if (startDate.isAfter(endDate)) {
+						valid = false;
+				}
+
+		} else {
+				valid = false; // one or both dates are missing
 		}
+} catch (DateTimeParseException e) {
+		valid = false; // failed to parse dates
+		e.printStackTrace();
+}
 
-		bs.setDate(startDate, endDate);  // Save the date
-		AlertBox.information("Available Rooms", out);
-
-
-		FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML("SelectRoomss.fxml"));
-
-		try {
-			Node editView = loader.load();
-		
-			SelectRoomsController editController = loader.getController();
-			
-			for (Room r: availRooms) {
-				editController.addRoomCard(r.roomNum, r.floorLevel, r.roomTypeId);
-			}
-	
-			MainController.getInstance().changeView("SelectRoomss.fxml", Sidebar.EXPLORE, editView);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	if (!valid) {
+		AlertBox.error("Invalid Dates", "Please select valid dates");
+		return;
 	}
+	
+
+	BookingService bookingService = new BookingService();
+	List<Room> availRooms = bookingService.getAvailableRoomsByTypeAndDate(roomType.typeId, startDateStr, startDateStr);
+
+	if (availRooms == null || availRooms.isEmpty()) {
+		AlertBox.error("No Rooms Available", "No rooms available for the selected dates");
+		MainController.getInstance().resetCache("checkingAvailability.fxml");
+		MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
+	}
+
+	bs.setDate(startDateStr, endDateStr);  // Save the date
+
+
+	FXMLLoader loader = new FXMLLoader(LoaderFX.getFXML("SelectRoomss.fxml"));
+
+	try {
+		Node editView = loader.load();
+	
+		SelectRoomsController editController = loader.getController();
+		
+		for (Room r: availRooms) {
+			editController.addRoomCard(r.roomNum, r.floorLevel, r.roomTypeId);
+		}
+
+		MainController.getInstance().changeView("SelectRoomss.fxml", Sidebar.EXPLORE, editView);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
 	
 	private void drawCalendar()
 	{

@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.geometry.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.delluna.dellunahotel.controllers.PaymentController"
-            prefWidth="800" prefHeight="600">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.PaymentController">
 
     <!-- Top: Title and Booking ID -->
     <top>
         <VBox spacing="5" style="-fx-padding: 20; -fx-background-color: white;">
-            <Label text="Payment Summary" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-            <Label text="Booking ID: " fx:id="bookingIdLabel" style="-fx-font-size: 14px;"/>
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Payment Summary" />
+            <Label fx:id="bookingIdLabel" style="-fx-font-size: 14px;" text="Booking ID: " />
         </VBox>
     </top>
 
@@ -23,25 +26,40 @@
     <center>
         <HBox spacing="20" style="-fx-padding: 20;">
             <!-- Left: Booking Details -->
-            <GridPane hgap="10" vgap="10">
-                <Label text="Guest ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <Label fx:id="guestIdLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <GridPane hgap="10" prefHeight="395.0" prefWidth="238.0" vgap="10">
+                <Label text="Guest ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="guestIdLabel" prefHeight="17.0" prefWidth="158.0" GridPane.columnIndex="1" />
 
-                <Label text="Room Number:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label fx:id="roomNumLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Room Number:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="roomNumLabel" prefHeight="17.0" prefWidth="115.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Check-In:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <Label fx:id="checkInLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Check-In:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label fx:id="checkInLabel" prefHeight="17.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Check-Out:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <Label fx:id="checkOutLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Check-Out:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Label fx:id="checkOutLabel" prefHeight="17.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Price Per Night:" GridPane.rowIndex="2" />
+            <Label fx:id="pricePerNightLabel" prefHeight="17.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <columnConstraints>
+               <ColumnConstraints maxWidth="94.0" minWidth="70.0" prefWidth="94.0" />
+               <ColumnConstraints maxWidth="134.0" minWidth="110.0" prefWidth="110.0" />
+               <ColumnConstraints maxWidth="4.0" minWidth="4.0" prefWidth="4.0" />
+               <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="20.0" />
+               <RowConstraints maxHeight="37.0" minHeight="23.0" prefHeight="27.0" />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
 
             <!-- Right: Service TableView -->
             <TableView fx:id="servicesTable" prefWidth="300">
                 <columns>
-                    <TableColumn text="Service" fx:id="serviceNameCol" prefWidth="200"/>
-                    <TableColumn text="Price" fx:id="servicePriceCol" prefWidth="100"/>
+                    <TableColumn fx:id="serviceNameCol" prefWidth="200" text="Service" />
+                    <TableColumn fx:id="servicePriceCol" prefWidth="100" text="Price" />
                 </columns>
             </TableView>
         </HBox>
@@ -50,22 +68,21 @@
     <!-- Right: Price Summary -->
     <right>
         <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #f5f5f5;">
-            <Label text="Summary" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-            <Label text="Room Cost:" fx:id="roomCostLabel"/>
-            <Label text="Services Cost:" fx:id="serviceCostLabel"/>
-            <Label text="Tax:" fx:id="taxLabel"/>
-            <Label text="Discount:" fx:id="discountLabel"/>
-            <Separator/>
-            <Label text="Grand Total:" style="-fx-font-size: 16px; -fx-font-weight: bold;" fx:id="grandTotalLabel"/>
-            <Label text="Points Earned:" fx:id="pointsLabel"/>
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Summary" />
+            <Label fx:id="roomCostLabel" text="Room Cost:" />
+            <Label fx:id="serviceCostLabel" text="Services Cost:" />
+            <Label fx:id="taxLabel" text="Tax (6%):" />
+            <Label fx:id="discountLabel" text="Deposit:" />
+            <Separator />
+            <Label fx:id="grandTotalLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Grand Total:" />
         </VBox>
     </right>
 
     <!-- Bottom: Actions -->
     <bottom>
-        <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 20; -fx-background-color: white;">
-            <Button text="Cancel" fx:id="cancelButton" prefWidth="100"/>
-            <Button text="Pay Now" fx:id="payButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" prefWidth="120"/>
+        <HBox alignment="CENTER_RIGHT" spacing="15" style="-fx-padding: 20; -fx-background-color: white;">
+            <Button fx:id="cancelButton" prefWidth="100" text="Cancel" />
+            <Button fx:id="payButton" prefWidth="120" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Pay Now" />
         </HBox>
     </bottom>
 </BorderPane>

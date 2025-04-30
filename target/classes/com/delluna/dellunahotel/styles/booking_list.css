@@ -1,0 +1,28 @@
+.root-pane {
+  -fx-padding: 20;
+  -fx-background-color: #f9f9f9;
+}
+
+.booking-table {
+  -fx-border-color: #ccc;
+  -fx-border-width: 1;
+  -fx-background-insets: 0;
+  -fx-table-cell-border-color: transparent;
+}
+
+.booking-table .column-header-background {
+  -fx-background-color: #e0e0e0;
+}
+
+.booking-table .column-header, .booking-table .column-header .label {
+  -fx-font-weight: bold;
+  -fx-alignment: CENTER_LEFT;
+}
+
+.booking-table .table-row-cell:filled:alternate {
+  -fx-background-color: #fafafa;
+}
+
+.booking-table .table-row-cell:focused {
+  -fx-background-color: #d0eaff;
+}

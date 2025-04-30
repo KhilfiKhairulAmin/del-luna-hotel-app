@@ -1,11 +1,8 @@
 package com.delluna.dellunahotel.controllers;
 
-import com.delluna.dellunahotel.utils.LoaderFX;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -31,7 +28,6 @@ public class LandingPageController {
 
     @FXML
     private void onBookNow() {
-        // TODO: navigate to booking view
-        System.out.println("Redirecting to booking screen...");
+        MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
     }
 }

@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1156.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.delluna.dellunahotel.controllers.RoomSelectionController">
-   
-   <top>
-      <ToolBar prefHeight="86.0" prefWidth="1156.0" styleClass="main-toolbar">
-         <items>
-            <Button mnemonicParsing="false" styleClass="toolbar-button" text="Button" />
-         </items>
-      </ToolBar>
-   </top>
    
    <center>
       <ScrollPane hbarPolicy="NEVER" styleClass="room-scroll-pane">
          <content>
             <VBox fx:id="roomContainer" prefWidth="1146.0" spacing="20" styleClass="room-container">
-
- 
             </VBox>
          </content>
       </ScrollPane>
    </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="100.0" prefWidth="388.0" text="   Select Rooms" textFill="#6e62aa">
+               <font>
+                  <Font name="Segoe UI Black" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

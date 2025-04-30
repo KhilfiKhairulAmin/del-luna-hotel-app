@@ -19,36 +19,35 @@ public class GuestService {
     }
 
     // File operations
-    private void loadFromFile() {
-        guests.clear();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            reader.readLine(); // Skip header
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",", -1);
-                if (parts.length < 8) continue;
+private void loadFromFile() {
+    guests.clear();
+    try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        reader.readLine(); // Skip header
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",", -1);
+            if (parts.length < 8) continue;
 
-                Guest guest = new Guest();
-                guest.guestId = parts[0];
-                guest.email = parts[1];
-                guest.fullName = parts[2];
-                guest.phone = parts[3];
-                guest.gender = parts[4];
-                guest.points = Integer.parseInt(parts[5]);
-                guest.level = parts[6];
-                guest.tag = parts[7];
-                guest.passwordHash = parts.length > 8 ? parts[8] : "";
-                
-                guests.add(guest);
-            }
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
+            Guest guest = new Guest();
+            guest.guestId = parts[0];
+            guest.email = parts[1];
+            guest.fullName = parts[2];
+            guest.phone = parts[3];
+            guest.gender = parts[4];
+            guest.securityQuestion = parts[5];
+            guest.hashPassword = parts[6];
+            guest.hashSecurityAnswer = parts.length > 7 ? parts[7] : "";
+            
+            guests.add(guest);
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     private void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            writer.write("guestId,email,fullName,phone,gender,points,level,tags,passwordHash\n");
+            writer.write("guestId,email,fullName,phone,gender,securityQuestion,passwordHash,securityAnswerHash\n");
             for (Guest guest : guests) {
                 writer.write(String.join(",",
                     guest.guestId,
@@ -56,10 +55,9 @@ public class GuestService {
                     guest.fullName,
                     guest.phone,
                     guest.gender,
-                    String.valueOf(guest.points),
-                    guest.level,
-                    guest.tag,
-                    guest.passwordHash
+                    guest.securityQuestion,
+                    guest.hashPassword,
+                    guest.hashSecurityAnswer
                 ));
                 writer.newLine();
             }
@@ -96,16 +94,23 @@ public class GuestService {
         }
     }
 
+    public void logout() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(AUTH_FILE_PATH))) {
+            // Opening the file like this with no content clears it
+            writer.write(""); // Optional: can omit this line
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        
+    }
+
     // Guest operations
     public String createGuest(Guest guest) throws RuntimeException {
         if (getGuestByEmail(guest.email) != null) {
             throw new RuntimeException("Email already registered");
         }
 
-        guest.level = "First-time User";
-        guest.points = 0;
-        guest.tag = "Newcomer";
-        guest.passwordHash = Hash.hashString(guest.passwordHash);
+        guest.hashPassword = Hash.hashString(guest.hashPassword);
+        guest.hashSecurityAnswer = Hash.hashString(guest.hashSecurityAnswer);
         guest.guestId = guests.isEmpty() ? "1" : 
             String.valueOf(Integer.parseInt(guests.get(guests.size()-1).guestId) + 1);
 
@@ -132,6 +137,17 @@ public class GuestService {
         }
     }
 
+    public boolean verifyLogin(String email, String password) throws RuntimeException {
+        Guest guest = getGuestByEmail(email);
+        System.out.println(guest.email);
+        if (guest == null || !guest.hashPassword.equals(Hash.hashString(password))) {
+            return false;
+        }
+        String token = JwtUtil.generateToken(guest.guestId);
+        saveAuthToken(guest.guestId, token);
+        return true;
+    }
+
     public boolean updateGuest(Guest updatedGuest) throws RuntimeException {
         Guest existingGuest = getGuestById(updatedGuest.guestId);
         if (existingGuest == null) return false;
@@ -140,14 +156,21 @@ public class GuestService {
             getGuestByEmail(updatedGuest.email) != null) {
             throw new RuntimeException("Email already in use");
         }
-
-        updatedGuest.points = existingGuest.points;
-        updatedGuest.level = existingGuest.level;
-        updatedGuest.passwordHash = existingGuest.passwordHash;
+        
+        // updatedGuest.hashPassword = existingGuest.hashPassword;
+        // updatedGuest.hashSecurityAnswer = existingGuest.hashSecurityAnswer;
 
         guests.replaceAll(g -> g.guestId.equals(updatedGuest.guestId) ? updatedGuest : g);
         saveToFile();
         return true;
+    }
+
+    public void updatePassword(String email, String newPassword) throws RuntimeException {
+        Guest guest = getGuestByEmail(email);
+        if (guest == null) throw new RuntimeException("Guest not found");
+
+        guest.hashPassword = Hash.hashString(newPassword);
+        updateGuest(guest);
     }
 
     public Guest getGuestById(String guestId) {
@@ -175,7 +198,7 @@ public class GuestService {
 
     public String authenticate(String email, String password) {
         Guest guest = getGuestByEmail(email);
-        if (guest == null || !guest.passwordHash.equals(Hash.hashString(password))) {
+        if (guest == null || !guest.hashPassword.equals(Hash.hashString(password))) {
             throw new RuntimeException("Invalid email or password");
         }
 
@@ -184,13 +207,19 @@ public class GuestService {
         return token;
     }
 
-    public boolean addPoints(String guestId, int points) {
-        Guest guest = getGuestById(guestId);
-        if (guest != null) {
-            guest.points += points;
-            saveToFile();
-            return true;
+    public boolean verifySecurityAnswer(String email, String answer) {
+        Guest guest = getGuestByEmail(email);
+        return guest != null && guest.hashSecurityAnswer.equals(Hash.hashString(answer));
+    }
+
+    public boolean resetPassword(String email, String newPassword, String securityAnswer) {
+        Guest guest = getGuestByEmail(email);
+        if (guest == null || !guest.hashSecurityAnswer.equals(Hash.hashString(securityAnswer))) {
+            return false;
         }
-        return false;
+        
+        guest.hashPassword = Hash.hashString(newPassword);
+        saveToFile();
+        return true;
     }
 }

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -22,6 +23,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.swing.SwingUtilities;
 
 public class PaymentController implements Initializable {
 
@@ -40,16 +43,19 @@ public class PaymentController implements Initializable {
     @FXML private Label taxLabel;
     @FXML private Label discountLabel;
     @FXML private Label grandTotalLabel;
-    @FXML private Label pointsLabel;
+    @FXML private Label pricePerNightLabel;
 
     @FXML private Button payButton;
     @FXML private Button cancelButton;
 
     private Booking booking;
+    
 
     private final BookingSingleton bookingSingleton = BookingSingleton.getInstance();
     private final ServiceService serviceService = new ServiceService();
     private final RoomService roomService = new RoomService();
+
+    @FXML private Rectangle forgotPasswordImageContainer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,25 +95,23 @@ public class PaymentController implements Initializable {
         double totalRoomCost = nightlyRate * nights;
 
         // 6) (Optional) tax & discount from booking model or compute here
-        double tax        = booking.taxAmount;
-        double discount   = booking.discountAmount;
-        double grandTotal = totalRoomCost + totalServiceCost + tax - discount;
-        int    points     = booking.pointsObtained;
+        double tax        = 0.06 * (totalRoomCost + totalServiceCost);
+        double deposit   = 100;
+        double grandTotal = totalRoomCost + totalServiceCost + tax + deposit;
 
         booking.totalRoomCost = totalRoomCost;
         booking.totalServiceCost = totalServiceCost;
-        booking.taxAmount = 0;
-        booking.discountAmount = 0;
+        booking.taxAmount = tax;
+        booking.depositAmount = deposit;
         booking.grandTotal = grandTotal;
-        booking.pointsObtained = 0;
 
         // 7) Populate summary labels
-        roomCostLabel.setText(roomCostLabel.getText() + " RM" + String.format("$%.2f", totalRoomCost));
-        serviceCostLabel.setText(serviceCostLabel.getText() + " RM" + String.format("$%.2f", totalServiceCost));
-        taxLabel.setText(taxLabel.getText() + " RM" + String.format("$%.2f", tax));
-        discountLabel.setText(discountLabel.getText() + " RM" + String.format("-$%.2f", discount));
-        grandTotalLabel.setText(grandTotalLabel.getText() + " RM" + String.format("$%.2f", grandTotal));
-        pointsLabel.setText(pointsLabel.getText() + " " + String.valueOf(points));
+        roomCostLabel.setText(roomCostLabel.getText() + String.format(" RM%.2f", totalRoomCost));
+        serviceCostLabel.setText(serviceCostLabel.getText() + String.format(" RM%.2f", totalServiceCost));
+        taxLabel.setText(taxLabel.getText() + String.format(" RM%.2f", tax));
+        discountLabel.setText(discountLabel.getText() + String.format(" RM%.2f", deposit));
+        grandTotalLabel.setText(grandTotalLabel.getText() + String.format(" RM%.2f", grandTotal));
+        pricePerNightLabel.setText(String.format("RM%.2f", roomType.pricePerNight));
 
         Booking newBooking = new BookingService().createBooking(booking);
         bookingIdLabel.setText("Booking ID: " + newBooking.bookingId);
@@ -128,8 +132,19 @@ public class PaymentController implements Initializable {
 
     /** Dummy handler for Pay Now – implement your payment logic here */
     private void handlePay() {
-        System.out.println("Pay Now clicked! Implement payment flow.");
-        // e.g. bookingSingleton.resetBooking(); navigate away…
+        MainController.getInstance().resetCache("Payment.fxml");
+        MainController.getInstance().resetCache("SelectRooms.fxml");
+        MainController.getInstance().resetCache("checkingAvailability.fxml");
+
+        SwingUtilities.invokeLater(() -> {
+            new PaymentOptionsGUI(() -> {
+                javafx.application.Platform.runLater(() -> {
+                    MainController.getInstance().resetCache("BookingList.fxml");
+                    MainController.getInstance().changeView("BookingList.fxml", Sidebar.BOOKINGS);
+                });
+            });
+        });
+        
     }
 
     /** Dummy handler for Cancel – implement cancellation/reset logic here */
@@ -138,6 +153,9 @@ public class PaymentController implements Initializable {
         bookingSingleton.resetBooking();
         BookingService bs = new BookingService();
         bs.deleteBooking(booking.bookingId);
+        MainController.getInstance().resetCache("Payment.fxml");
+        MainController.getInstance().resetCache("SelectRoomss.fxml");
+        MainController.getInstance().resetCache("checkingAvailability.fxml");
         MainController.getInstance().changeView("SelectingRooms2.fxml", Sidebar.EXPLORE);
     }
 }

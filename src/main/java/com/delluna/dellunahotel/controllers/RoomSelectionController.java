@@ -3,20 +3,14 @@ package com.delluna.dellunahotel.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-import com.delluna.dellunahotel.models.Room;
 import com.delluna.dellunahotel.models.RoomType;
 import com.delluna.dellunahotel.services.RoomService;
-import com.delluna.dellunahotel.utils.LoaderFX;
 
 public class RoomSelectionController {
 	@FXML

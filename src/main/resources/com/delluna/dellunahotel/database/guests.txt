@@ -1,2 +1,6 @@
-guestId,email,fullName,phone,gender,points,level,tags,passwordHash
-1,khilfika@gmail.com,KFY,01156325494,Female,0,Newcomer,Traveller,461c9585d92677909c6544be532fae3154138e278d236b075ffbe299241d8906
+guestId,email,fullName,phone,gender,securityQuestion,passwordHash,securityAnswerHash
+1,khilfika@gmail.com,KFY,01156325493,Female,0,Newcomer,Traveller
+2,khilfikhairulamin@gmail.com,Khilfi Khairul Amin,01112312345,Male,What was your first pet's name?,!L0v3mama,6963982f0b20d377979cb381f4a2ddeeb228d30b0838fd4b8c1ed56d765e2463
+3,a@a.a,Amina,0123456,Male,What was your first pet's name?,42b0511d77520319cc110e4ad81d0428183eabe05d35b080c51d3b141f494554,6963982f0b20d377979cb381f4a2ddeeb228d30b0838fd4b8c1ed56d765e2463
+4,maza@gmail.com,Mazdam Bin Zaiman,0103186508,Male,What was your first pet's name?,9d6e11342065f8ef482c53a68a7c0fdc6323ae387b8c0e72b8ac10079fa321b0,099987a5188a32ab07b68b4219a824bb83bfcc10aca0fd4f58e41c99b37f09f9
+5,abu@gmail.com,Abu Bin Abi,01112312345,Male,What city were you born in?,41db117fdeba5e61616cda3f34aedabdbcd4415f9639835ce4ad321783de8181,453305cec62a58f4e5dfe034712828caa077471f08e892e9ecc5d3262a0518d2

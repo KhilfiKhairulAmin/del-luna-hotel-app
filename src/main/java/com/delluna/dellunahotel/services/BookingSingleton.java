@@ -62,6 +62,5 @@ public class BookingSingleton {
 
     public void resetBooking() {
         booking = new Booking();
-        notifyListeners();
     }
 }

@@ -6,9 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.delluna.dellunahotel.utils.Logger;
-import com.delluna.dellunahotel.models.Guest;
 import com.delluna.dellunahotel.services.GuestService;
-import com.delluna.dellunahotel.utils.ApiClient;
 import com.delluna.dellunahotel.utils.LoaderFX;
 
 import javafx.stage.Screen;
@@ -17,16 +15,6 @@ import javafx.geometry.Rectangle2D;
 import java.io.IOException;
 
 public class App extends Application {
-    // TODO Complete Integration Tinte
-    // TODO Complete Payments
-    // TODO Complete Wallet
-    // TODO Complete Settings
-    // TODO Complete Account
-    // TODO Complete Homepage
-    // TODO Add complementary feature
-    // TODO Complete feature search 
-    // TODO Complete feature music
-    // TODO Perfectionist
 	
     @Override
     public void start(Stage primaryStage) throws Exception {

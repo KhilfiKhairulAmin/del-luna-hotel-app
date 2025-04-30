@@ -1,0 +1,78 @@
+/* Room cards */
+.room-card {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10px;
+  -fx-padding: 20px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);
+}
+
+.room-card:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0, 0, 3);
+}
+
+.room-image {
+  -fx-background-color: #f0f0f0;
+  -fx-background-radius: 8px;
+  -fx-min-height: 200px;
+}
+
+.room-title {
+  -fx-font-family: 'Roboto Bold';
+  -fx-font-size: 18px;
+  -fx-text-fill: #2d3436;
+}
+
+.room-details {
+  -fx-text-fill: #636e72;
+  -fx-font-size: 14px;
+}
+
+/* Summary section */
+.summary-box {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10px;
+  -fx-padding: 25px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);
+}
+
+.summary-title {
+  -fx-font-family: 'Roboto Bold';
+  -fx-font-size: 24px;
+  -fx-text-fill: #2d3436;
+}
+
+.summary-content {
+  -fx-padding: 15px 0;
+}
+
+/* Continue button */
+.continue-button {
+  -fx-background-color: #6e62aa;
+  -fx-font-family: 'Roboto Bold';
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-background-radius: 25px;
+  -fx-padding: 12px 30px;
+}
+
+.continue-button:hover {
+  -fx-background-color: #4c4280;
+}
+
+/* Continue button */
+.cancel-button {
+  -fx-background-color: #6d6d6d;
+  -fx-font-family: 'Roboto Bold';
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-background-radius: 25px;
+  -fx-padding: 12px 30px;
+}
+
+.cancel-button:hover {
+  -fx-background-color: rgb(80, 80, 80);
+}
+
+.continue-button:disabled {
+  -fx-background-color: #7a72a0c0;
+}

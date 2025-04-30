@@ -1,7 +1,5 @@
 package com.delluna.dellunahotel.utils;
 
-import java.util.ArrayList;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 

@@ -87,7 +87,7 @@
             </StackPane>
             
             <!-- Bookings with icon -->
-            <StackPane fx:id="rewardsStack" prefHeight="50.0" prefWidth="210.0" styleClass="sidebar-component">
+            <StackPane fx:id="bookingStack" prefHeight="50.0" prefWidth="210.0" styleClass="sidebar-component">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10" styleClass="icon-container">
                      <ImageView fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
@@ -108,7 +108,7 @@
             </StackPane>
             
             <!-- Guides with icon -->
-            <StackPane fx:id="bookingsStack" prefHeight="50.0" prefWidth="210.0" styleClass="sidebar-component">
+            <StackPane fx:id="guideStack" prefHeight="50.0" prefWidth="210.0" styleClass="sidebar-component">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10" styleClass="icon-container">
                      <ImageView fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
@@ -163,7 +163,7 @@
                            <Insets left="10" />
                         </HBox.margin>
                      </ImageView>
-                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
                         <font>
                            <Font name="Segoe UI" size="14.0" />
                         </font>

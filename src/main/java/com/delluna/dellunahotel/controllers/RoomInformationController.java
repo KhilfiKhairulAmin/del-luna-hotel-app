@@ -1,6 +1,5 @@
 package com.delluna.dellunahotel.controllers;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import com.delluna.dellunahotel.models.RoomType;
@@ -8,10 +7,8 @@ import com.delluna.dellunahotel.utils.LoaderFX;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,11 +41,17 @@ public class RoomInformationController {
         roomLabel.setText(String.join(" ", words));
         roomImage.setImage(LoaderFX.getImage("rooms/" + name + ".png"));
 
+        Label l = new Label();
+        l.setText("Amenities:");
+        utilitiesContainer.getChildren().add(l);
         for (String util: roomType.amenities) {
-          Label l = new Label();
-          l.setText(util);
+          l = new Label();
+          l.setText("• " + util);
           utilitiesContainer.getChildren().add(l);
         }
+        l = new Label();
+        l.setText(String.format("Price: RM %.2f", roomType.pricePerNight));
+        utilitiesContainer.getChildren().add(l);
     }
 
     @FXML
